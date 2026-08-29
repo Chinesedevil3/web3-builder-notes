@@ -6,5 +6,7 @@
 - Deployment transaction: `0x84f3d9c7a4552c2fe648ccce6a1568de464c3d7c7d60f579567c181a8fe7024d`
 - Date: 2026-08-30
 
-## Next interaction
-Call `setColor("cosmic purple")` once, then read `color` to confirm the state change and record the interaction transaction here.
+## Interaction
+- Function: `setColor("cosmic purple")`
+- Transaction: `0x3c1846eec6ae94843f5b70725349e48bef4aa794d13f35df411d65904ed767be`
+- Read check: `color()` confirms the updated state.
