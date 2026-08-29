@@ -1,24 +1,23 @@
-# GIWA Sepolia bridge notes
+# GIWA Sepolia builder notes
 
 ## Goal
-Track bridge testing and builder activity on GIWA Sepolia with real transaction records.
+Track real builder activity on GIWA Sepolia with deploys, interactions and bridge records.
 
 ## Builder checklist
-- [ ] Verify the current official GIWA Sepolia bridge URL
-- [ ] Confirm source and destination networks before signing
-- [ ] Bridge a small test amount
-- [ ] Record source transaction hash
-- [ ] Record destination transaction hash
-- [ ] Note bridge time and any issues
-- [ ] Open a useful bug report if something is reproducibly broken
+- [x] Connect wallet to GIWA Sepolia
+- [x] Deploy one small test contract
+- [x] Record contract address and deployment transaction
+- [ ] Call one write function on the deployed contract
+- [ ] Read contract state after the interaction
+- [ ] Record the interaction transaction
+- [ ] Optionally record a real bridge test separately
 
-## Bridge log
-- Source network: TBD
-- Destination network: GIWA Sepolia
-- Amount: TBD
-- Source tx: TBD
-- Destination tx: TBD
-- Date: TBD
+## Contract deployment
+- Network: GIWA Sepolia
+- Contract: GiwaGuestbook
+- Contract address: 0x943d9535a16C55D840A6cd37928394f51F7Be8F5
+- Deploy tx: 0xb7e56d1874466204cb22e5cf51c7fe2725128906acd46e9fa06b78d84aab5072
+- Date: 2026-08-29
 
 ## Notes
-Keep this folder for genuine bridge tests, observations and reproducible bugs. Never commit private keys, seed phrases or wallet secrets.
+Next step is to call `saveNote()` once, then read `totalNotes` or `notes(address)` to confirm the state change. Never commit private keys, seed phrases or wallet secrets.
