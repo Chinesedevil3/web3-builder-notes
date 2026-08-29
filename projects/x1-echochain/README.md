@@ -5,19 +5,19 @@ Track real testnet activity and small builder experiments without spam commits.
 
 ## Builder checklist
 - [ ] Confirm current network/RPC details from the official X1 testnet app or wallet prompt
-- [ ] Connect wallet
-- [ ] Claim testnet funds
+- [x] Connect wallet
+- [x] Claim testnet funds
 - [ ] Send a normal test transaction
 - [x] Deploy one tiny test contract
 - [x] Record contract address and transaction hash below
 - [ ] Test one interaction with the deployed contract
 
 ## Deployment log
-- Network: X1 EcoChain testnet
+- Network: X1 EcoChain testnet (custom chain 10778 in Remix/Rabby)
 - Contract: X1Counter
-- Contract address: 0xd8b934580fcE35a11B58C6D73aDeE468a2833fa8
-- Deploy tx: 0x6dc3b2d5ebe4c9970f9d36283e24f5b230e61e7a8fc719b7fe606197811ea824
-- Date: 2026-08-28
+- Contract address: 0xEE855e37907D0e69aB8bDdbb2BD5900e7EA2f0C2
+- Deploy tx: 0x8ac1b50db07631b2aafd9ecf63cbfd3f3f4769bb366b68535f933279b20ae0a9
+- Date: 2026-08-29
 
 ## Notes
-Use this folder for actual X1 experiments, deployment records and anything learned while testing. Never commit seed phrases, private keys or wallet secrets.
+The earlier Remix VM deployment was local-only and has been replaced here with the real wallet-signed X1 testnet deployment. Never commit seed phrases, private keys or wallet secrets.
