@@ -1,24 +1,23 @@
 # Arc network builder notes
 
 ## Goal
-Track real testnet/mainnet experiments on Arc without manufacturing meaningless activity.
+Track real builder activity on Arc Testnet with deployments and contract interactions.
 
 ## Builder checklist
-- [ ] Confirm the current official Arc network details
-- [ ] Connect wallet to the intended Arc environment
-- [ ] Send a small test transaction
-- [ ] Deploy one simple contract if deployments are supported
-- [ ] Record the contract address and deploy tx
-- [ ] Test one read/write interaction
-- [ ] Record any reproducible issue or useful feedback
+- [x] Confirm the intended Arc Testnet environment
+- [x] Connect wallet to Arc Testnet
+- [x] Deploy one simple contract
+- [x] Record the contract address and deploy transaction
+- [ ] Call one write function on the deployed contract
+- [ ] Read contract state after the interaction
+- [ ] Record the interaction transaction
 
 ## Deployment log
-- Network: Arc
-- Environment: TBD
-- Contract: TBD
-- Contract address: TBD
-- Deploy tx: TBD
-- Date: TBD
+- Network: Arc Testnet
+- Contract: ArcPalette
+- Contract address: 0xcCa17c3c5E0f8d9E25d98b3EF157422c0B7428DF
+- Deploy tx: 0x84f3d9c7a4552c2fe648ccce6a1568de464c3d7c7d60f579567c181a8fe7024d
+- Date: 2026-08-30
 
 ## Notes
-Use this folder for actual experiments and learnings. Never commit private keys, seed phrases or wallet secrets.
+Next step is to call `setColor("cosmic purple")`, then read `color` to confirm the state change. Never commit private keys, seed phrases or wallet secrets.
