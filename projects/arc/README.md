@@ -16,6 +16,7 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - [x] Record the native ecosystem registration transaction
 - [x] Create an ERC-8183 agentic commerce job
 - [x] Set the job budget from the provider wallet
+- [x] Approve the ERC-8183 contract to spend 1 USDC
 - [ ] Fund the ERC-8183 job into USDC escrow
 - [ ] Submit a deliverable from the provider wallet
 - [ ] Complete the job from the evaluator wallet
@@ -37,10 +38,12 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 
 ## ERC-8183 agentic commerce activity
 - Contract: `0x0747EEf0706327138c69792bF28Cd525089e4583`
+- USDC: `0x3600000000000000000000000000000000000000`
 - Job ID: `182416`
 - Budget: `1 USDC`
 - Create job tx: `0x3c237093eb639dab702d2df88e3a7cab82942e462c285b42843f79ea6787cea1`
 - Set budget tx: `0x11a1d3c838c22534cad2c0ec771209f4f7d9f52e42b22d1d980900aa066875c9`
+- Approve USDC tx: `0x6e4c316610ec5f38c73e04c4ef2c104d3acf471b475ddd27dc258ace51737573`
 - Date: 2026-08-31
 
 ## Why Arc
