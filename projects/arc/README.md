@@ -17,8 +17,9 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - [x] Create an ERC-8183 agentic commerce job
 - [x] Set the job budget from the provider wallet
 - [x] Approve the ERC-8183 contract to spend 1 USDC
-- [ ] Fund the ERC-8183 job into USDC escrow
-- [ ] Submit a deliverable from the provider wallet
+- [x] Fund the ERC-8183 job into USDC escrow
+- [x] Create an offchain deliverable artifact for the job
+- [ ] Submit the deliverable commitment from the provider wallet
 - [ ] Complete the job from the evaluator wallet
 
 ## Deployment log
@@ -44,10 +45,13 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - Create job tx: `0x3c237093eb639dab702d2df88e3a7cab82942e462c285b42843f79ea6787cea1`
 - Set budget tx: `0x11a1d3c838c22534cad2c0ec771209f4f7d9f52e42b22d1d980900aa066875c9`
 - Approve USDC tx: `0x6e4c316610ec5f38c73e04c4ef2c104d3acf471b475ddd27dc258ace51737573`
+- Fund tx: `0xb48ac67bdd000c4ad622128dd2ee03d12303dde6e86b921c8a53a7580da82b16`
+- Deliverable: `erc8183/deliverable-182416.json`
+- Deliverable SHA-256: `0xdc8963d83122bbf865cb5692a94ab5119fde7b52ca3c31c9fa5198611bedd09b`
 - Date: 2026-08-31
 
 ## Why Arc
 Arc is being tested here not only as an EVM deployment target but through ecosystem-native agent identity and agentic commerce primitives. The ERC-8004 registration establishes identity, while the ERC-8183 flow tests scoped work, USDC escrow and settlement rather than repeating generic contract calls.
 
 ## Notes
-ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. The ERC-8183 flow uses separate client/provider roles and a 1 USDC test budget. Never commit private keys, seed phrases or wallet secrets.
+ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. The ERC-8183 flow uses separate client/provider roles, a 1 USDC test budget, escrowed funding and a public offchain deliverable committed by hash. Never commit private keys, seed phrases or wallet secrets.
