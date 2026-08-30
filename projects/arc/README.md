@@ -19,7 +19,7 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - [x] Approve the ERC-8183 contract to spend 1 USDC
 - [x] Fund the ERC-8183 job into USDC escrow
 - [x] Create an offchain deliverable artifact for the job
-- [ ] Submit the deliverable commitment from the provider wallet
+- [x] Submit the deliverable commitment from the provider wallet
 - [ ] Complete the job from the evaluator wallet
 
 ## Deployment log
@@ -48,6 +48,7 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - Fund tx: `0xb48ac67bdd000c4ad622128dd2ee03d12303dde6e86b921c8a53a7580da82b16`
 - Deliverable: `erc8183/deliverable-182416.json`
 - Deliverable SHA-256: `0xdc8963d83122bbf865cb5692a94ab5119fde7b52ca3c31c9fa5198611bedd09b`
+- Submit tx: `0x01aea78c2d1db670c08add3b9fb43a9b2c3628dc7bedb13ff877c2d2aedfefe6`
 - Date: 2026-08-31
 
 ## Why Arc
