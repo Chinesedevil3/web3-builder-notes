@@ -14,6 +14,11 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - [x] Create ERC-8004 agent metadata
 - [x] Register an agent identity in the Arc ERC-8004 IdentityRegistry
 - [x] Record the native ecosystem registration transaction
+- [x] Create an ERC-8183 agentic commerce job
+- [x] Set the job budget from the provider wallet
+- [ ] Fund the ERC-8183 job into USDC escrow
+- [ ] Submit a deliverable from the provider wallet
+- [ ] Complete the job from the evaluator wallet
 
 ## Deployment log
 - Network: Arc Testnet
@@ -30,8 +35,16 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - Registration tx: `0x51441a9e0d16633858755706b41ee6116c2963226d55b9efa97b4b1d83029cfd`
 - Date: 2026-08-31
 
+## ERC-8183 agentic commerce activity
+- Contract: `0x0747EEf0706327138c69792bF28Cd525089e4583`
+- Job ID: `182416`
+- Budget: `1 USDC`
+- Create job tx: `0x3c237093eb639dab702d2df88e3a7cab82942e462c285b42843f79ea6787cea1`
+- Set budget tx: `0x11a1d3c838c22534cad2c0ec771209f4f7d9f52e42b22d1d980900aa066875c9`
+- Date: 2026-08-31
+
 ## Why Arc
-Arc is being tested here not only as an EVM deployment target but through an ecosystem-native agent identity primitive. The ERC-8004 registration creates a more meaningful footprint than repeating generic contract calls.
+Arc is being tested here not only as an EVM deployment target but through ecosystem-native agent identity and agentic commerce primitives. The ERC-8004 registration establishes identity, while the ERC-8183 flow tests scoped work, USDC escrow and settlement rather than repeating generic contract calls.
 
 ## Notes
-ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. Never commit private keys, seed phrases or wallet secrets.
+ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. The ERC-8183 flow uses separate client/provider roles and a 1 USDC test budget. Never commit private keys, seed phrases or wallet secrets.
