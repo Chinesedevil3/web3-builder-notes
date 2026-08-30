@@ -20,7 +20,7 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - [x] Fund the ERC-8183 job into USDC escrow
 - [x] Create an offchain deliverable artifact for the job
 - [x] Submit the deliverable commitment from the provider wallet
-- [ ] Complete the job from the evaluator wallet
+- [x] Complete the job from the evaluator wallet
 
 ## Deployment log
 - Network: Arc Testnet
@@ -49,10 +49,12 @@ Track real builder activity on Arc Testnet with deployments, contract interactio
 - Deliverable: `erc8183/deliverable-182416.json`
 - Deliverable SHA-256: `0xdc8963d83122bbf865cb5692a94ab5119fde7b52ca3c31c9fa5198611bedd09b`
 - Submit tx: `0x01aea78c2d1db670c08add3b9fb43a9b2c3628dc7bedb13ff877c2d2aedfefe6`
+- Complete tx: `0xe3569c91dc0010e5b358c8895514a40b54985e98bd8a7ad4038e28862eb5bdb1`
+- Status: `Completed`
 - Date: 2026-08-31
 
 ## Why Arc
 Arc is being tested here not only as an EVM deployment target but through ecosystem-native agent identity and agentic commerce primitives. The ERC-8004 registration establishes identity, while the ERC-8183 flow tests scoped work, USDC escrow and settlement rather than repeating generic contract calls.
 
 ## Notes
-ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. The ERC-8183 flow uses separate client/provider roles, a 1 USDC test budget, escrowed funding and a public offchain deliverable committed by hash. Never commit private keys, seed phrases or wallet secrets.
+ArcPalette was deployed successfully and a write interaction was recorded. The ERC-8004 registration links an onchain agent identity to public metadata in this repository. The ERC-8183 flow uses separate client/provider roles, a 1 USDC test budget, escrowed funding, a public offchain deliverable committed by hash, and a completed evaluator settlement. Never commit private keys, seed phrases or wallet secrets.
