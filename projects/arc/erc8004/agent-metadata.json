@@ -1,0 +1,12 @@
+{
+  "name": "Creator Signal Agent",
+  "description": "Experimental ERC-8004 agent identity for testing creator-oriented discovery, payment intent and onchain reputation flows on Arc Testnet.",
+  "agent_type": "creator-tools-experiment",
+  "capabilities": [
+    "creator_discovery",
+    "payment_intent",
+    "onchain_reputation"
+  ],
+  "network": "Arc Testnet",
+  "version": "0.1.0"
+}
