@@ -8,6 +8,9 @@
 - Profile name: ChineseDevil
 - Profile URI: https://github.com/Chinesedevil3/web3-builder-notes
 - Profile registration tx: 0xd2b3d5c2ee7bc443a98aa322c1f27bdcab3bab3ebe247f9956411b2f4fe42f0c
+- Build project: X1 builder registry
+- Build proof URI: https://github.com/Chinesedevil3/web3-builder-notes/tree/main/projects/x1-echochain
+- Build publication tx: 0xcf22cab32b2b17b85720f3922ff142551b4a823a972d8008838e4da6b73c7440
 - Date: 2026-08-31
 
-Next actions: publish one build proof, then read the stored profile and build state back from chain.
+Next action: read the stored profile and build #1 state back from chain, then verify source on the explorer if supported.
