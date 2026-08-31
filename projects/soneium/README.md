@@ -11,7 +11,7 @@ Track real creator-oriented builder activity across Soneium, including both cont
 - [x] Connect wallet to Soneium Mainnet
 - [x] Interact with the Soneium EAS SchemaRegistry predeploy
 - [x] Register a creator-oriented schema on Soneium Mainnet
-- [ ] Record the schema UID
+- [x] Record the schema UID
 - [ ] Create a mainnet attestation using the registered schema
 
 ## Minato deployment log
@@ -31,6 +31,7 @@ Track real creator-oriented builder activity across Soneium, including both cont
 - Resolver: `0x0000000000000000000000000000000000000000`
 - Revocable: `true`
 - Registration tx: `0x6c5a31e074170baf6fea8ee14091a13b7a442e806c875eeebced8222f633ba69`
+- Schema UID: `0xaaccf0fbc4adacfab19c6b70be80639f3f282064920205a4d0d9dc79830db928`
 - Date: 2026-08-31
 
 ## Why this matters
