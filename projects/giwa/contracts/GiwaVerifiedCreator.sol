@@ -9,9 +9,9 @@ interface IDojangScroll {
 contract GiwaVerifiedCreator {
     address internal constant DOJANG_SCROLL = 0xd5077b67dcb56caC8b270C7788FC3E6ee03F17B9;
 
-    // keccak256("dojang.dojangattesterids.upbitkorea")
+    // GIWA Sepolia TESTNET FAUCET attester ID
     bytes32 internal constant ATTESTER_ID =
-        0xd99b42e778498aa3c9c1f6a012359130252780511687a35982e8e52735453034;
+        0xaa92f8c143657dde575de430aecaea6ca91f2e6072339b16932d426895d8d678;
 
     struct CreatorProof {
         address creator;
