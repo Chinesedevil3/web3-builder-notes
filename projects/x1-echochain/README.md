@@ -8,8 +8,8 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - [x] Claim testnet funds
 - [x] Deploy and interact with X1Counter
 - [x] Deploy X1BuilderRegistry
-- [x] Register builder profile
-- [x] Publish one build proof
+- [ ] Register builder profile on the real X1 deployment
+- [ ] Publish one build proof on the real X1 deployment
 - [ ] Read back stored profile/build state
 - [ ] Verify source on the X1 explorer if available
 
@@ -27,16 +27,13 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - Contract: X1BuilderRegistry
 - Contract address: 0x83747a438A880F161dD74aB6E86331Be3669FFF0
 - Deploy tx: 0x270e2b71fa96ff589d2f258beeaf5660ca5cd458d8f91ce3093820ae0bc16881
-- Profile name: ChineseDevil
-- Profile URI: https://github.com/Chinesedevil3/web3-builder-notes
-- Profile registration tx: 0xd2b3d5c2ee7bc443a98aa322c1f27bdcab3bab3ebe247f9956411b2f4fe42f0c
-- Build project: X1 builder registry
-- Build proof URI: https://github.com/Chinesedevil3/web3-builder-notes/tree/main/projects/x1-echochain
-- Build publication tx: 0xcf22cab32b2b17b85720f3922ff142551b4a823a972d8008838e4da6b73c7440
 - Date: 2026-08-31
 
+## Interaction correction
+A Remix readback on the real X1 deployment returned an empty profile (`name = ""`, `buildCount = 0`). The Remix terminal also showed old Remix VM instances mixed with the real network instance, including a VM `publishBuild` revert with `register profile first`. Because the previously supplied profile/build transaction hashes could not be reconciled with the state of the real deployment, they are intentionally not treated as verified X1 interactions here.
+
 ## Why this matters
-X1Counter proves a basic deploy/write/read flow. X1BuilderRegistry adds a more useful builder identity + build-proof registry, giving the X1 footprint a clearer purpose than another generic counter.
+X1Counter proves a basic deploy/write/read flow. X1BuilderRegistry adds a more useful builder identity + build-proof registry. The next interactions should be made against the exact deployed address on chain and then read back before being recorded.
 
 ## Notes
-The earlier Remix VM deployment was local-only and was replaced with real wallet-signed X1 testnet activity. Never commit seed phrases, private keys or wallet secrets.
+Never commit seed phrases, private keys or wallet secrets.
