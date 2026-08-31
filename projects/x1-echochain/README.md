@@ -8,7 +8,7 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - [x] Claim testnet funds
 - [x] Deploy and interact with X1Counter
 - [x] Deploy X1BuilderRegistry
-- [ ] Register builder profile on the real X1 deployment
+- [x] Register builder profile on the real X1 deployment
 - [ ] Publish one build proof on the real X1 deployment
 - [ ] Read back stored profile/build state
 - [ ] Verify source on the X1 explorer if available
@@ -27,13 +27,16 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - Contract: X1BuilderRegistry
 - Contract address: 0x83747a438A880F161dD74aB6E86331Be3669FFF0
 - Deploy tx: 0x270e2b71fa96ff589d2f258beeaf5660ca5cd458d8f91ce3093820ae0bc16881
+- Profile registration tx: 0xa82ec1feab7855c0196fbc2e42de1579d421ebaf1a5f0ab66949016e0fcd5dde
+- Profile name: ChineseDevil
+- Profile URI: https://github.com/Chinesedevil3/web3-builder-notes
 - Date: 2026-08-31
 
 ## Interaction correction
-A Remix readback on the real X1 deployment returned an empty profile (`name = ""`, `buildCount = 0`). The Remix terminal also showed old Remix VM instances mixed with the real network instance, including a VM `publishBuild` revert with `register profile first`. Because the previously supplied profile/build transaction hashes could not be reconciled with the state of the real deployment, they are intentionally not treated as verified X1 interactions here.
+The earlier Remix interaction hashes were discarded because they came from the wrong contract instance / Remix VM flow. The profile was then registered again after attaching Remix directly to the exact real X1 contract address above. The new transaction hash listed here is the one to use for the real X1 profile registration.
 
 ## Why this matters
-X1Counter proves a basic deploy/write/read flow. X1BuilderRegistry adds a more useful builder identity + build-proof registry. The next interactions should be made against the exact deployed address on chain and then read back before being recorded.
+X1Counter proves a basic deploy/write/read flow. X1BuilderRegistry adds a more useful builder identity + build-proof registry. The next step is to publish build #1 against this exact onchain contract and then read the stored state back.
 
 ## Notes
 Never commit seed phrases, private keys or wallet secrets.
