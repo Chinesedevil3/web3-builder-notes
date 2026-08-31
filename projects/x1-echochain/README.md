@@ -9,7 +9,7 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - [x] Deploy and interact with X1Counter
 - [x] Deploy X1BuilderRegistry
 - [x] Register builder profile
-- [ ] Publish one build proof
+- [x] Publish one build proof
 - [ ] Read back stored profile/build state
 - [ ] Verify source on the X1 explorer if available
 
@@ -30,6 +30,9 @@ Track real X1 builder activity with deployed contracts, state-changing interacti
 - Profile name: ChineseDevil
 - Profile URI: https://github.com/Chinesedevil3/web3-builder-notes
 - Profile registration tx: 0xd2b3d5c2ee7bc443a98aa322c1f27bdcab3bab3ebe247f9956411b2f4fe42f0c
+- Build project: X1 builder registry
+- Build proof URI: https://github.com/Chinesedevil3/web3-builder-notes/tree/main/projects/x1-echochain
+- Build publication tx: 0xcf22cab32b2b17b85720f3922ff142551b4a823a972d8008838e4da6b73c7440
 - Date: 2026-08-31
 
 ## Why this matters
