@@ -1,24 +1,40 @@
-# Soneium Minato builder notes
+# Soneium builder notes
 
 ## Goal
-Track a real creator-oriented contract deployment and interaction on Soneium Minato.
+Track real creator-oriented builder activity across Soneium, including both contract deployment activity and ecosystem-native mainnet primitives.
 
 ## Builder checklist
-- [x] Connect wallet to Soneium Minato
-- [x] Deploy one creator-focused contract
-- [x] Record contract address and deployment transaction
+- [x] Deploy a creator-focused contract on Soneium Minato
 - [x] Call `publish("gm soneium")`
 - [x] Read `latestNote` after the interaction
-- [x] Record the interaction transaction
+- [x] Record Minato deployment and interaction transactions
+- [x] Connect wallet to Soneium Mainnet
+- [x] Interact with the Soneium EAS SchemaRegistry predeploy
+- [x] Register a creator-oriented schema on Soneium Mainnet
+- [ ] Record the schema UID
+- [ ] Create a mainnet attestation using the registered schema
 
-## Deployment log
+## Minato deployment log
 - Network: Soneium Minato
 - Contract: SoneiumCreatorNote
 - Contract address: 0xE22E6dCB8f5De3B077Aa12262e0585AE08ad7e6C
 - Deploy tx: 0x31df49402b2d662ff0c3497c47d9c91859fd18f92139e9e7c77accd05bc0c21c
+- Interaction: `publish("gm soneium")`
 - Interaction tx: 0x56a33ac11b3480a2f34b03e4f71511d97b13e708fd5ae697b0e55e8bab813786
 - Read result: latestNote = "gm soneium"
 - Date: 2026-08-30
 
+## Mainnet EAS activity
+- Network: Soneium Mainnet
+- SchemaRegistry: `0x4200000000000000000000000000000000000020`
+- Schema: `address creator,string signal,string context`
+- Resolver: `0x0000000000000000000000000000000000000000`
+- Revocable: `true`
+- Registration tx: `0x6c5a31e074170baf6fea8ee14091a13b7a442e806c875eeebced8222f633ba69`
+- Date: 2026-08-31
+
+## Why this matters
+The Minato activity proves a standard creator-contract deployment flow, while the mainnet SchemaRegistry interaction uses Soneium's EAS predeploy rather than another generic contract. The next step is to use the returned schema UID to create an actual creator attestation on Soneium Mainnet.
+
 ## Notes
-The contract was deployed and `publish("gm soneium")` was sent successfully. Reading `latestNote` confirmed the stored note. Never commit private keys, seed phrases or wallet secrets.
+Never commit private keys, seed phrases or wallet secrets.
