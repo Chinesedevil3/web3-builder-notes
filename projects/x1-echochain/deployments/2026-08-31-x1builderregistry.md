@@ -7,7 +7,13 @@
 - Deploy tx: 0x270e2b71fa96ff589d2f258beeaf5660ca5cd458d8f91ce3093820ae0bc16881
 - Date: 2026-08-31
 
-## Interaction status
-The real deployment currently reads back an empty profile (`name = ""`, `buildCount = 0`). Remix also showed old VM contract instances alongside the real X1 deployment. Previous profile/build transaction hashes are therefore not recorded here as verified interactions.
+## Verified interaction flow
+Remix was attached directly to the exact deployed contract address before retrying the builder interaction.
 
-Next action: attach Remix directly to the exact onchain contract address, register the profile again, read it back, then publish and read back build #1.
+- Profile name: ChineseDevil
+- Profile URI: https://github.com/Chinesedevil3/web3-builder-notes
+- Profile registration tx: 0xa82ec1feab7855c0196fbc2e42de1579d421ebaf1a5f0ab66949016e0fcd5dde
+
+Earlier mixed Remix VM interaction hashes are intentionally excluded from the verified X1 record.
+
+Next action: publish build #1 on this exact contract instance, then read `profiles(wallet)` and `builds(wallet, 1)` back from chain.
