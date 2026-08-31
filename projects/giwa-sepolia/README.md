@@ -1,18 +1,19 @@
 # GIWA Sepolia builder notes
 
 ## Goal
-Track real builder activity on GIWA Sepolia with deploys, interactions and bridge records.
+Track real builder activity on GIWA Sepolia with deploys, interactions and GIWA-native identity primitives.
 
 ## Builder checklist
 - [x] Connect wallet to GIWA Sepolia
-- [x] Deploy one small test contract
-- [x] Record contract address and deployment transaction
-- [x] Call one write function on the deployed contract
-- [x] Read contract state after the interaction
-- [x] Record the interaction transaction
-- [ ] Optionally record a real bridge test separately
+- [x] Deploy and test GiwaGuestbook
+- [x] Record Guestbook deployment and interaction
+- [x] Deploy GiwaVerifiedCreator
+- [x] Integrate the GIWA DojangScroll verification contract
+- [ ] Confirm the connected wallet with `isVerified(address)`
+- [ ] Publish one verified creator proof
+- [ ] Record the verified proof transaction and state
 
-## Contract deployment
+## First contract deployment
 - Network: GIWA Sepolia
 - Contract: GiwaGuestbook
 - Contract address: 0x943d9535a16C55D840A6cd37928394f51F7Be8F5
@@ -21,5 +22,17 @@ Track real builder activity on GIWA Sepolia with deploys, interactions and bridg
 - State check: totalNotes = 1
 - Date: 2026-08-29
 
+## GIWA-native Dojang build
+- Network: GIWA Sepolia
+- Contract: GiwaVerifiedCreator
+- Contract address: 0xc4bCAE2C2AE55d3f7Fd7b4D95fcfE172e7772962
+- Deploy tx: 0x8e79c7a4ebffb41b3a13ba5bdc342ea06f4b01deda062f9734fa94ecb80fcd77
+- DojangScroll: 0xd5077b67dcb56caC8b270C7788FC3E6ee03F17B9
+- Attester ID: 0xaa92f8c143657dde575de430aecaea6ca91f2e6072339b16932d426895d8d678
+- Date: 2026-08-31
+
+## Why this matters
+The Guestbook proves a standard deploy/write/read flow. GiwaVerifiedCreator goes further by reading GIWA's Dojang verification state and gating creator proof publication behind the network-native identity primitive.
+
 ## Notes
-GiwaGuestbook was deployed and successfully tested with a write (`saveNote`) and read (`totalNotes`) interaction. Never commit private keys, seed phrases or wallet secrets.
+Never commit private keys, seed phrases or wallet secrets.
