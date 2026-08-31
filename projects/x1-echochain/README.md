@@ -1,19 +1,20 @@
 # X1 EcoChain testnet
 
 ## Goal
-Track real testnet activity and small builder experiments without spam commits.
+Track real X1 builder activity with deployed contracts, state-changing interactions and a builder registry rather than repeated counters.
 
 ## Builder checklist
-- [ ] Confirm current network/RPC details from the official X1 testnet app or wallet prompt
-- [x] Connect wallet
+- [x] Connect wallet to X1 EcoChain testnet
 - [x] Claim testnet funds
-- [ ] Send a normal test transaction
-- [x] Deploy one tiny test contract
-- [x] Record contract address and transaction hash below
-- [x] Test one interaction with the deployed contract
+- [x] Deploy and interact with X1Counter
+- [x] Deploy X1BuilderRegistry
+- [ ] Register builder profile
+- [ ] Publish one build proof
+- [ ] Read back stored profile/build state
+- [ ] Verify source on the X1 explorer if available
 
-## Deployment log
-- Network: X1 EcoChain testnet (custom chain 10778 in Remix/Rabby)
+## First deployment
+- Network: X1 EcoChain testnet (chain 10778)
 - Contract: X1Counter
 - Contract address: 0xEE855e37907D0e69aB8bDdbb2BD5900e7EA2f0C2
 - Deploy tx: 0x8ac1b50db07631b2aafd9ecf63cbfd3f3f4769bb366b68535f933279b20ae0a9
@@ -21,5 +22,15 @@ Track real testnet activity and small builder experiments without spam commits.
 - Observed count after interactions: 4
 - Date: 2026-08-29
 
+## Builder registry deployment
+- Network: X1 EcoChain testnet (chain 10778)
+- Contract: X1BuilderRegistry
+- Contract address: 0x83747a438A880F161dD74aB6E86331Be3669FFF0
+- Deploy tx: 0x270e2b71fa96ff589d2f258beeaf5660ca5cd458d8f91ce3093820ae0bc16881
+- Date: 2026-08-31
+
+## Why this matters
+X1Counter proves a basic deploy/write/read flow. X1BuilderRegistry adds a more useful builder identity + build-proof registry, giving the X1 footprint a clearer purpose than another generic counter.
+
 ## Notes
-The earlier Remix VM deployment was local-only and has been replaced here with the real wallet-signed X1 testnet deployment. The deployed counter was successfully written to and read back from chain. Never commit seed phrases, private keys or wallet secrets.
+The earlier Remix VM deployment was local-only and was replaced with real wallet-signed X1 testnet activity. Never commit seed phrases, private keys or wallet secrets.
