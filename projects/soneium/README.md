@@ -13,7 +13,7 @@ Track real creator-oriented builder activity across Soneium, including both cont
 - [x] Register a creator-oriented schema on Soneium Mainnet
 - [x] Record the schema UID
 - [x] Create a mainnet attestation using the registered schema
-- [ ] Record the attestation UID
+- [x] Record the attestation UID
 
 ## Minato deployment log
 - Network: Soneium Minato
@@ -37,6 +37,7 @@ Track real creator-oriented builder activity across Soneium, including both cont
 - Attestation signal: `gm soneium`
 - Attestation context: `mainnet creator attestation`
 - Attestation tx: `0x0f0607752e8431f9fefb8a91aada5d573dc32b5585afa5b12280b481e29f36e8`
+- Attestation UID: `0xe669c44dc00ff50928e95ad5a8377a18c2df02aff52eb81d75b742eff6d91ad1`
 - Date: 2026-08-31
 
 ## Why this matters
