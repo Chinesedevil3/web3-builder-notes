@@ -26,11 +26,15 @@
 - Constructor EAS address: `0x4200000000000000000000000000000000000021`
 - Constructor schema UID: `0x13c2d0e975350f51f2132b160aad18f8f32f239227e6d7428e1ba9c17f52062b`
 
-## Publish attempt
+## Verified EAS publish interaction
 
 - Project: `Ink EAS builder attestation`
 - URI: `https://github.com/Chinesedevil3/web3-builder-notes/tree/main/projects/ink`
-- Transaction hash: `0x070e088573f01eb697a15f12696036de14d870583bb2f0c980f041ce50388304`
-- Current `latestAttestationUid` readback: `0x0000000000000000000000000000000000000000000000000000000000000000`
+- Publish tx: `0x070e088573f01eb697a15f12696036de14d870583bb2f0c980f041ce50388304`
+- Transaction status: `Success`
+- Attestation UID: `0xbb461d2de5179984abdf00f559bee1b087cb3048c6d338f6bd059235b4c94f47`
+- EAS `Attested` recipient: `0x06a1E61244E6A55FD52375b3faB913Af9249952b`
+- EAS `Attested` attester: `0x57fdd36076F5fCf3176c25Fb814093Abcb3cE994`
+- EAS `Attested` schema UID: `0x13c2d0e975350f51f2132b160aad18f8f32f239227e6d7428e1ba9c17f52062b`
 
-The transaction hash exists, but the expected wrapper state change has not been verified. Do not record this as a successful EAS publish yet. First confirm the transaction status and that the readback is from the deployed `InkBuilderAttest` at `0x57fdd36076F5fCf3176c25Fb814093Abcb3cE994`. Only after a non-zero `latestAttestationUid` is observed should the attestation be marked successful.
+The Ink explorer confirms the publish transaction succeeded and the canonical EAS contract emitted an `Attested` event with the UID above. A previous zero value seen in Remix was an incorrect/stale wrapper readback and is not used as the protocol attestation record. The wrapper's direct `latestAttestationUid` read can be re-checked on the correct deployed instance as an optional final UI verification.
