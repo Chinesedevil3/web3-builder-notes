@@ -1,0 +1,40 @@
+---
+description: Secrets, explicit-approval ops, and honest onchain records for this Web3 notes repo
+alwaysApply: true
+---
+
+# Secrets, approval, and honest chain work
+
+## Secrets
+
+Never expose, paste, log, or commit private keys, seed phrases, wallet secrets, `.env` files, or values like `DEPLOYER_PRIVATE_KEY`. Use env vars or a secrets manager locally. If a secret appears in chat or a file, stop, do not repeat it, and keep it out of git.
+
+```ts
+// ❌ BAD — secret in source
+const wallet = new Wallet("0xabc123...");
+
+// ✅ GOOD — secret stays out of the repo
+const wallet = new Wallet(vars.get("DEPLOYER_PRIVATE_KEY"));
+```
+
+## Explicit approval only
+
+Do not commit, push, deploy, delete files, change network settings, or run destructive/irreversible commands unless the user clearly asked for that action in this conversation. Preserve existing project history and deployment records (`projects/*/deployments/*`, READMEs, checklists). Do not rewrite, drop, or invent over those files.
+
+## Verify chain facts
+
+Before using a chain ID, RPC, explorer URL, or protocol contract address, confirm it from **current official docs** for that network. Do not reuse stale notes or guess.
+
+```md
+<!-- ❌ BAD -->
+Chain ID: 1 (I think this is the testnet)
+
+<!-- ✅ GOOD -->
+Chain ID, RPC, explorer URL, and protocol addresses: verified from current official docs
+```
+
+## Never fabricate onchain activity
+
+Do not invent transaction hashes, deployment addresses, interactions, or builder footprints. If it did not happen on the target chain, do not record it as if it did. Prefer meaningful chain-relevant integrations over spam counters or fake activity.
+
+Document every **real** deployment and interaction in the repo (network, chain ID, contract, address, deploy tx, date, verified writes/reads), same style as existing `projects/*/deployments/*.md` files.
