@@ -26,8 +26,11 @@
 - Constructor EAS address: `0x4200000000000000000000000000000000000021`
 - Constructor schema UID: `0x13c2d0e975350f51f2132b160aad18f8f32f239227e6d7428e1ba9c17f52062b`
 
-## Pending interaction
+## EAS publish interaction
 
-The wrapper is deployed. The next real step is to call `publish(string project, string uri)`, then record the publish transaction and verify the non-zero `latestAttestationUid` readback.
+- Project: `Ink EAS builder attestation`
+- URI: `https://github.com/Chinesedevil3/web3-builder-notes/tree/main/projects/ink`
+- Publish tx: `0x070e088573f01eb697a15f12696036de14d870583bb2f0c980f041ce50388304`
+- `latestAttestationUid`: pending readback
 
-No publish transaction or attestation UID is recorded here until it exists on Ink Mainnet.
+The publish transaction now exists on Ink Mainnet. The remaining check is to read `latestAttestationUid` from the deployed wrapper and confirm it is non-zero, then record that exact UID here.
