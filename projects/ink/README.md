@@ -13,10 +13,11 @@ Track genuine builder activity on Ink: the original Ink Sepolia counter footprin
 - [x] Register schema `address builder,string project,string uri` on Ink Mainnet SchemaRegistry
 - [x] Record the schema UID
 - [x] Deploy `InkBuilderAttest` on Ink Mainnet through Remix with a browser wallet
-- [ ] Call `publish(string project, string uri)`
+- [x] Call `publish(string project, string uri)`
 - [ ] Read `latestAttestationUid` after the interaction
 - [x] Record the EAS wrapper deployment transaction
-- [ ] Record the publish transaction and attestation UID
+- [x] Record the publish transaction
+- [ ] Record the attestation UID
 
 ## Remix (Ink Mainnet EAS upgrade)
 Use Remix Browser Extension / Injected Provider and a browser wallet. Do not paste a private key.
@@ -59,12 +60,12 @@ Record hashes and UIDs in `deployments/` only after those transactions exist onc
 - Schema UID: `0x13c2d0e975350f51f2132b160aad18f8f32f239227e6d7428e1ba9c17f52062b`
 - `InkBuilderAttest`: `0x57fdd36076F5fCf3176c25Fb814093Abcb3cE994`
 - Deploy tx: `0x31eeae7352e11e9b3df40b96b8095d2203f621142c39cce04ed5a1a82e8aceee`
-- Publish tx: pending
-- `latestAttestationUid`: pending
+- Publish tx: `0x070e088573f01eb697a15f12696036de14d870583bb2f0c980f041ce50388304`
+- `latestAttestationUid`: pending readback
 - Date: 2026-09-01
 
 ## Why this matters
 InkCounter proves a standard deploy/write/read flow on the testnet. `InkBuilderAttest` upgrades the footprint on Ink Mainnet by registering a real schema through the canonical SchemaRegistry predeploy and using the EAS predeploy for attestations, while exposing the returned attestation UID for a clear readback.
 
 ## Notes
-`increment()` was executed successfully on Ink Sepolia and the transaction is recorded above. The EAS wrapper is now deployed on Ink Mainnet; the publish/readback step remains pending. Never commit private keys, seed phrases or wallet secrets.
+`increment()` was executed successfully on Ink Sepolia and the transaction is recorded above. The EAS wrapper is deployed on Ink Mainnet and `publish` has been executed; the attestation UID readback remains pending. Never commit private keys, seed phrases or wallet secrets.
