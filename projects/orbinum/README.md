@@ -1,28 +1,52 @@
 # Orbinum builder notes
 
-Orbinum is EVM-compatible, so this folder is for small Solidity experiments and real deployment records.
+## Goal
+Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum-specific EVM ↔ Substrate functionality.
 
 ## Network
-- Testnet chain ID: 2700
-- Native currency: ORB
-- RPC: https://rpc-1.testnet.orbinum.io
-- Explorer: https://explorer.testnet.orbinum.network
+- Network: Orbinum Testnet
+- Chain ID: `2700`
+- Native currency: `ORB`
+- RPC: `https://rpc-1.testnet.orbinum.io`
+- Explorer: `https://explorer.testnet.orbinum.network`
+- Mainnet: not live yet
 
 ## Builder checklist
 - [x] Connect wallet to Orbinum Testnet
-- [x] Deploy one small contract
-- [x] Record contract address and deployment transaction
-- [x] Call `ping()` once
-- [x] Read `totalPings` after the interaction
-- [x] Record the interaction transaction
+- [x] Deploy and interact with `OrbPing`
+- [x] Record the first deployment and readback
+- [x] Add an Orbinum-native precompile integration contract
+- [ ] Deploy `OrbinumNativePayout`
+- [ ] Fund the deployed contract with testnet ORB
+- [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
+- [ ] Pay an `AccountId32` through the native Substrate balances pallet
+- [ ] Record the payout transaction and recipient
 
-## Deployment log
-- Contract: OrbPing
-- Contract address: 0xA337F467d176573f61A704b5cec4605e3b736ff4
-- Deploy tx: 0x5fb7d0b2cd9fa109f6c08ac900c473f8b1713343497c53c7d59231115a50a94f
-- Interaction tx: 0x6bc776ddeb8a3167a576e6f69e683496b8ce945b597d36ec33afcd9808baa902
-- Confirmed `totalPings`: 1
+## First deployment — OrbPing
+- Contract: `OrbPing`
+- Contract address: `0xA337F467d176573f61A704b5cec4605e3b736ff4`
+- Deploy tx: `0x5fb7d0b2cd9fa109f6c08ac900c473f8b1713343497c53c7d59231115a50a94f`
+- Interaction tx: `0x6bc776ddeb8a3167a576e6f69e683496b8ce945b597d36ec33afcd9808baa902`
+- Confirmed `totalPings`: `1`
 - Date: 2026-08-30
 
+## Native upgrade — EVM to Substrate payout
+
+`contracts/OrbinumNativePayout.sol` integrates Orbinum's Balances precompile at:
+
+`0x0000000000000000000000000000000000000802`
+
+The contract can hold ORB and, under owner control, call `transferKeepAlive(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
+
+This is more meaningful than another generic Solidity contract because the precompile exposes Orbinum's native Substrate balances pallet directly to EVM contracts. A pure Substrate Sr25519/Ed25519 account can receive a payment even though it has no EVM `H160` address.
+
+The helper `evmToAccountId32(address)` also documents Orbinum's unified EVM/Substrate account mapping: an EVM address becomes a 32-byte account ID by appending twelve zero bytes.
+
+## Why this matters
+
+`OrbPing` proves basic EVM compatibility. `OrbinumNativePayout` is the actual ecosystem-specific upgrade: Solidity calling Orbinum runtime functionality through a native precompile and bridging the EVM and Substrate address spaces.
+
+A deeper privacy build can later use the ShieldedPool precompile at `0x0000000000000000000000000000000000000801`, but real shielded transfers require commitments, encrypted memos and ZK proofs generated with the Orbinum SDK, so they are intentionally not faked here.
+
 ## Notes
-`ping()` was sent successfully and `totalPings` was read back as `1`, confirming the state change. Never commit private keys, seed phrases or wallet secrets.
+Never commit private keys, seed phrases or wallet secrets. Only mark the native payout checklist complete after the real testnet deployment, funding and payout transactions exist.
