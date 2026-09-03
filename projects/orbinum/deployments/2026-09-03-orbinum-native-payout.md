@@ -9,14 +9,16 @@
 - Deployment tx: pending capture
 - Funding amount: `0.1 ORB`
 - Funding tx: `0x956b7bb14ff1b54d16f17c84d0bf29bd4dd47d913e0d4adbb837ff142a9df56c`
+- EVM recipient: `0x06a1E61244E6A55FD52375b3faB913Af9249952b`
+- Derived `AccountId32`: `0x06a1e61244e6a55fd52375b3fab913af9249952b000000000000000000000000`
 
 ## Native flow
 
 1. Contract deployed on Orbinum Testnet.
 2. Contract funded with testnet ORB.
-3. Convert an EVM recipient address to Orbinum `AccountId32` or use a native Substrate `AccountId32`.
+3. EVM recipient mapped to an Orbinum `AccountId32` using the contract helper.
 4. Call `payout(bytes32,uint256)`.
 5. The contract calls Orbinum's `Balances.transferKeepAlive` precompile.
-6. Record the payout transaction and recipient once verified onchain.
+6. Record the payout transaction once verified onchain.
 
-Funding is now recorded. Do not mark the native payout complete until a successful precompile-backed payout exists.
+Funding and address mapping are recorded. Do not mark the native payout complete until a successful precompile-backed payout exists.
