@@ -18,7 +18,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Add an Orbinum-native precompile integration contract
 - [x] Deploy `OrbinumNativePayout`
 - [ ] Record the `OrbinumNativePayout` deployment transaction hash
-- [ ] Fund the deployed contract with testnet ORB
+- [x] Fund the deployed contract with testnet ORB
 - [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
 - [ ] Record the payout transaction and recipient
@@ -42,6 +42,8 @@ Current deployment:
 - Contract address: `0xc728A922B137C3C926D127Af34Aa3187e0e46F9d`
 - Network: Orbinum Testnet (`2700`)
 - Deployment tx: pending capture
+- Funding amount: `0.1 ORB`
+- Funding tx: `0x956b7bb14ff1b54d16f17c84d0bf29bd4dd47d913e0d4adbb837ff142a9df56c`
 - Date: 2026-09-03
 
 The contract can hold ORB and, under owner control, call `transferKeepAlive(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
@@ -57,4 +59,4 @@ The helper `evmToAccountId32(address)` also documents Orbinum's unified EVM/Subs
 A deeper privacy build can later use the ShieldedPool precompile at `0x0000000000000000000000000000000000000801`, but real shielded transfers require commitments, encrypted memos and ZK proofs generated with the Orbinum SDK, so they are intentionally not faked here.
 
 ## Notes
-Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the real testnet funding and payout transactions exist.
+Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the real testnet payout transaction exists.
