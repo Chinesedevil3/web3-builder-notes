@@ -19,6 +19,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Deploy `OrbinumNativePayout`
 - [ ] Record the `OrbinumNativePayout` deployment transaction hash
 - [x] Fund the deployed contract with testnet ORB
+- [x] Confirm EVM → `AccountId32` mapping with `evmToAccountId32`
 - [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
 - [ ] Record the payout transaction and recipient
@@ -44,6 +45,8 @@ Current deployment:
 - Deployment tx: pending capture
 - Funding amount: `0.1 ORB`
 - Funding tx: `0x956b7bb14ff1b54d16f17c84d0bf29bd4dd47d913e0d4adbb837ff142a9df56c`
+- EVM recipient: `0x06a1E61244E6A55FD52375b3faB913Af9249952b`
+- Derived `AccountId32`: `0x06a1e61244e6a55fd52375b3fab913af9249952b000000000000000000000000`
 - Date: 2026-09-03
 
 The contract can hold ORB and, under owner control, call `transferKeepAlive(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
