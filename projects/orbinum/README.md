@@ -6,7 +6,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 ## Network
 - Network: Orbinum Testnet
 - Chain ID: `2700`
-- Native currency: `ORB`
+- Native currency: `ORB` (18 decimals)
 - RPC: `https://rpc-1.testnet.orbinum.io`
 - Explorer: `https://explorer.testnet.orbinum.network`
 - Mainnet: not live yet
@@ -16,7 +16,8 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Deploy and interact with `OrbPing`
 - [x] Record the first deployment and readback
 - [x] Add an Orbinum-native precompile integration contract
-- [ ] Deploy `OrbinumNativePayout`
+- [x] Deploy `OrbinumNativePayout`
+- [ ] Record the `OrbinumNativePayout` deployment transaction hash
 - [ ] Fund the deployed contract with testnet ORB
 - [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
@@ -36,6 +37,13 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 
 `0x0000000000000000000000000000000000000802`
 
+Current deployment:
+- Contract: `OrbinumNativePayout`
+- Contract address: `0xc728A922B137C3C926D127Af34Aa3187e0e46F9d`
+- Network: Orbinum Testnet (`2700`)
+- Deployment tx: pending capture
+- Date: 2026-09-03
+
 The contract can hold ORB and, under owner control, call `transferKeepAlive(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
 
 This is more meaningful than another generic Solidity contract because the precompile exposes Orbinum's native Substrate balances pallet directly to EVM contracts. A pure Substrate Sr25519/Ed25519 account can receive a payment even though it has no EVM `H160` address.
@@ -49,4 +57,4 @@ The helper `evmToAccountId32(address)` also documents Orbinum's unified EVM/Subs
 A deeper privacy build can later use the ShieldedPool precompile at `0x0000000000000000000000000000000000000801`, but real shielded transfers require commitments, encrypted memos and ZK proofs generated with the Orbinum SDK, so they are intentionally not faked here.
 
 ## Notes
-Never commit private keys, seed phrases or wallet secrets. Only mark the native payout checklist complete after the real testnet deployment, funding and payout transactions exist.
+Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the real testnet funding and payout transactions exist.
