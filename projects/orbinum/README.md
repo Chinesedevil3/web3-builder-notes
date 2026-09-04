@@ -24,9 +24,9 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Deploy the revised `OrbinumNativePayout`
 - [ ] Record the revised deployment transaction hash
 - [x] Fund the revised contract with testnet ORB
-- [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
+- [x] Send a direct transaction to Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
-- [ ] Record the payout transaction and recipient
+- [ ] Verify the direct precompile transaction succeeded, then record the native transfer as complete
 
 ## First deployment — OrbPing
 - Contract: `OrbPing`
@@ -76,3 +76,10 @@ A deeper privacy build can later use the ShieldedPool precompile at `0x000000000
 
 ## Notes
 Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the revised contract has a real testnet funding transaction and successful precompile-backed payout.
+
+
+### Direct native precompile transaction
+- Target precompile: `0x0000000000000000000000000000000000000802`
+- Function selector: `0x6a467394` (`transfer(bytes32,uint256)`)
+- Transaction hash: `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8`
+- Status: transaction hash returned by the wallet/provider; explorer success still needs confirmation before marking the native transfer complete.
