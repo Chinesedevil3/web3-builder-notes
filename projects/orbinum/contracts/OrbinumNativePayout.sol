@@ -41,7 +41,7 @@ contract OrbinumNativePayout {
         if (amount == 0) revert ZeroAmount();
         if (address(this).balance < amount) revert InsufficientBalance();
 
-        BALANCES.transferKeepAlive(recipientAccountId32, amount);
+        BALANCES.transfer(recipientAccountId32, amount);
         emit NativePayout(recipientAccountId32, amount);
     }
 
