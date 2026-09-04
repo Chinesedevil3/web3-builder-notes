@@ -31,3 +31,11 @@ Funding and address mapping are recorded. Do not mark the native payout complete
 - Funding tx: `0xf2b7edf2c7c7795ef58aea56cf2d4e744163785c0fff800bf1ebde66cd73f880`
 - Funding value reported from Remix: `200000000 wei`
 - Payout status: pending
+
+
+## Direct native precompile transaction
+
+- Target precompile: `0x0000000000000000000000000000000000000802`
+- Function: `transfer(bytes32,uint256)`
+- Transaction hash: `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8`
+- Status: submitted; explorer success still needs confirmation before marking the native transfer complete.
