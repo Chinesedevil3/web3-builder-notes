@@ -22,3 +22,12 @@
 6. Record the payout transaction once verified onchain.
 
 Funding and address mapping are recorded. Do not mark the native payout complete until a successful precompile-backed payout exists.
+
+
+## Revised transfer instance — 2026-09-04
+
+- Contract address: `0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47`
+- Payout implementation: `Balances.transfer(bytes32,uint256)`
+- Funding tx: `0xf2b7edf2c7c7795ef58aea56cf2d4e744163785c0fff800bf1ebde66cd73f880`
+- Funding value reported from Remix: `200000000 wei`
+- Payout status: pending
