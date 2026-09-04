@@ -16,10 +16,14 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Deploy and interact with `OrbPing`
 - [x] Record the first deployment and readback
 - [x] Add an Orbinum-native precompile integration contract
-- [x] Deploy `OrbinumNativePayout`
-- [ ] Record the `OrbinumNativePayout` deployment transaction hash
-- [x] Fund the deployed contract with testnet ORB
+- [x] Deploy the first `OrbinumNativePayout` test instance
+- [x] Fund the first test instance with testnet ORB
 - [x] Confirm EVM → `AccountId32` mapping with `evmToAccountId32`
+- [x] Diagnose the first `transferKeepAlive` payout attempt as reverting during gas estimation
+- [x] Switch the payout implementation to `Balances.transfer(bytes32,uint256)`
+- [x] Deploy the revised `OrbinumNativePayout`
+- [ ] Record the revised deployment transaction hash
+- [ ] Fund the revised contract with testnet ORB
 - [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
 - [ ] Record the payout transaction and recipient
@@ -38,8 +42,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 
 `0x0000000000000000000000000000000000000802`
 
-Current deployment:
-- Contract: `OrbinumNativePayout`
+### First test instance
 - Contract address: `0xc728A922B137C3C926D127Af34Aa3187e0e46F9d`
 - Network: Orbinum Testnet (`2700`)
 - Deployment tx: pending capture
@@ -47,9 +50,17 @@ Current deployment:
 - Funding tx: `0x956b7bb14ff1b54d16f17c84d0bf29bd4dd47d913e0d4adbb837ff142a9df56c`
 - EVM recipient: `0x06a1E61244E6A55FD52375b3faB913Af9249952b`
 - Derived `AccountId32`: `0x06a1e61244e6a55fd52375b3fab913af9249952b000000000000000000000000`
-- Date: 2026-09-03
+- Result: `transferKeepAlive` payout reverted during gas estimation with no revert data, so it was not force-sent.
 
-The contract can hold ORB and, under owner control, call `transferKeepAlive(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
+### Revised transfer instance
+- Contract address: `0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47`
+- Network: Orbinum Testnet (`2700`)
+- Deployment tx: pending capture
+- Payout implementation: `Balances.transfer(bytes32,uint256)`
+- Status: deployed; funding and payout still pending
+- Date: 2026-09-04
+
+The revised contract can hold ORB and, under owner control, call `transfer(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
 
 This is more meaningful than another generic Solidity contract because the precompile exposes Orbinum's native Substrate balances pallet directly to EVM contracts. A pure Substrate Sr25519/Ed25519 account can receive a payment even though it has no EVM `H160` address.
 
@@ -62,4 +73,4 @@ The helper `evmToAccountId32(address)` also documents Orbinum's unified EVM/Subs
 A deeper privacy build can later use the ShieldedPool precompile at `0x0000000000000000000000000000000000000801`, but real shielded transfers require commitments, encrypted memos and ZK proofs generated with the Orbinum SDK, so they are intentionally not faked here.
 
 ## Notes
-Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the real testnet payout transaction exists.
+Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the revised contract has a real testnet funding transaction and successful precompile-backed payout.
