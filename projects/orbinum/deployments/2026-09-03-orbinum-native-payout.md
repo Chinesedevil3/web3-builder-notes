@@ -38,4 +38,10 @@ Funding and address mapping are recorded. Do not mark the native payout complete
 - Target precompile: `0x0000000000000000000000000000000000000802`
 - Function: `transfer(bytes32,uint256)`
 - Transaction hash: `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8`
-- Status: submitted; explorer success still needs confirmation before marking the native transfer complete.
+- Status: **Success** on the Orbinum explorer
+- Result: native Balances precompile interaction verified onchain
+
+
+## Verified result — 2026-09-04
+
+Explorer verification confirms transaction `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8` succeeded. The destination was the native Balances precompile `0x0000000000000000000000000000000000000802`, with selector `0x6a467394` for `transfer(bytes32,uint256)`. This is the successful native Orbinum integration proof.
