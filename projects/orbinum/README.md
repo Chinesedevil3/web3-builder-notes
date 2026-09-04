@@ -25,8 +25,8 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [ ] Record the revised deployment transaction hash
 - [x] Fund the revised contract with testnet ORB
 - [x] Send a direct transaction to Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
-- [ ] Pay an `AccountId32` through the native Substrate balances pallet
-- [ ] Verify the direct precompile transaction succeeded, then record the native transfer as complete
+- [x] Pay an `AccountId32` through the native Substrate balances pallet
+- [x] Verify the direct precompile transaction succeeded and record the native transfer as complete
 
 ## First deployment — OrbPing
 - Contract: `OrbPing`
@@ -82,4 +82,9 @@ Never commit private keys, seed phrases or wallet secrets. Only mark the native 
 - Target precompile: `0x0000000000000000000000000000000000000802`
 - Function selector: `0x6a467394` (`transfer(bytes32,uint256)`)
 - Transaction hash: `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8`
-- Status: transaction hash returned by the wallet/provider; explorer success still needs confirmation before marking the native transfer complete.
+- Status: **Success** on the Orbinum explorer. The transaction called the native Balances precompile directly with selector `0x6a467394`, proving a real EVM → Substrate balances-pallet interaction.
+
+
+## Final status
+
+The Orbinum-native integration is complete. The explorer confirms transaction `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8` succeeded against the Balances precompile at `0x0000000000000000000000000000000000000802` using `transfer(bytes32,uint256)`. The earlier wrapper attempts remain documented as part of the debugging history rather than being rewritten as successful.
