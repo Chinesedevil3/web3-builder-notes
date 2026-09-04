@@ -23,7 +23,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Switch the payout implementation to `Balances.transfer(bytes32,uint256)`
 - [x] Deploy the revised `OrbinumNativePayout`
 - [ ] Record the revised deployment transaction hash
-- [ ] Fund the revised contract with testnet ORB
+- [x] Fund the revised contract with testnet ORB
 - [ ] Use Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
 - [ ] Pay an `AccountId32` through the native Substrate balances pallet
 - [ ] Record the payout transaction and recipient
@@ -57,7 +57,9 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - Network: Orbinum Testnet (`2700`)
 - Deployment tx: pending capture
 - Payout implementation: `Balances.transfer(bytes32,uint256)`
-- Status: deployed; funding and payout still pending
+- Funding tx: `0xf2b7edf2c7c7795ef58aea56cf2d4e744163785c0fff800bf1ebde66cd73f880`
+- Funding value reported from Remix: `200000000 wei`
+- Status: deployed and funded; payout pending
 - Date: 2026-09-04
 
 The revised contract can hold ORB and, under owner control, call `transfer(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
