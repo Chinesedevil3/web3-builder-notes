@@ -14,7 +14,7 @@ I am not presenting this repo as the work of a traditional software engineer. I 
 | [Ink](projects/ink/) | Ink Mainnet + Sepolia | Upgraded from a basic Sepolia contract to a mainnet `InkBuilderAttest` wrapper using SchemaRegistry + EAS with a verified attestation UID | Strong / complete |
 | [Push Chain](projects/push-chain/) | Push Donut Testnet | EVM contract + state interaction + Push-native Universal Transaction originating from Ethereum Sepolia | Strong / complete |
 | [X1 EcoChain](projects/x1-echochain/) | X1 Testnet | Builder registry with an onchain profile, published build proof, and verified readbacks | Good / complete |
-| [Orbinum](projects/orbinum/) | Orbinum Testnet | EVM deployment history plus a direct native Balances-precompile transaction using Orbinum's EVM ↔ Substrate account mapping | Verification pending |
+| [Orbinum](projects/orbinum/) | Orbinum Testnet | Native Balances-precompile transfer using Orbinum's EVM ↔ Substrate account mapping, verified successful onchain | Strong / complete |
 
 ## What is inside
 
@@ -41,7 +41,7 @@ Each project folder keeps its own README and deployment records. I keep old expe
 
 The next phase is less about collecting deployments on more chains and more about shipping projects that have a clear reason to exist.
 
-- **Orbinum:** verify the submitted native Balances-precompile transaction onchain, then close the integration only if it succeeded
+- **Orbinum:** native Balances-precompile integration completed and verified onchain
 - **Monad:** build a small original NFT / art project with a real visual identity, mint experience, public repo, and launch story
 - **Base:** build a more complete product-style app with a frontend, wallet/payment flow, and a real user use case
 
