@@ -9,12 +9,12 @@ I'm a creator and artist learning by shipping real onchain projects. I use AI as
 | Project | Network | What I built | Status |
 |---|---|---|---|
 | [Arc](projects/arc/) | Arc Testnet | ERC-8004 agent identity + full ERC-8183 agentic-commerce flow with USDC escrow, deliverable commitment, submission and settlement | Strong / complete |
-| [GIWA](projects/giwa-sepolia/) | GIWA Sepolia | `GiwaVerifiedCreator` integrated with GIWA Dojang verification and published a verified creator proof | Strong / complete |
+| [Orbinum](projects/orbinum/) | Orbinum Testnet | Native Balances-precompile transfer using Orbinum's EVM ↔ Substrate account mapping, verified successful onchain | Strong / complete |
 | [Soneium](projects/soneium/) | Soneium Mainnet + Minato | Creator contract on Minato, then a mainnet EAS schema registration and creator attestation | Strong / complete |
 | [Ink](projects/ink/) | Ink Mainnet + Sepolia | Upgraded from a basic Sepolia contract to a mainnet `InkBuilderAttest` wrapper using SchemaRegistry + EAS with a verified attestation UID | Strong / complete |
+| [GIWA](projects/giwa-sepolia/) | GIWA Sepolia | `GiwaVerifiedCreator` integrated with GIWA Dojang verification and published a verified creator proof | Strong / complete |
 | [Push Chain](projects/push-chain/) | Push Donut Testnet | EVM contract + state interaction + Push-native Universal Transaction originating from Ethereum Sepolia | Strong / complete |
 | [X1 EcoChain](projects/x1-echochain/) | X1 Testnet | Builder registry with an onchain profile, published build proof, and verified readbacks | Good / complete |
-| [Orbinum](projects/orbinum/) | Orbinum Testnet | Native Balances-precompile transfer using Orbinum's EVM ↔ Substrate account mapping, verified successful onchain | Strong / complete |
 
 ## What is inside
 
