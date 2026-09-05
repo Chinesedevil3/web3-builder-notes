@@ -2,7 +2,7 @@
 
 Creative Web3 experiments, onchain builds, and AI-assisted prototypes.
 
-I am not presenting this repo as the work of a traditional software engineer. I am learning by shipping: turning ideas into small real projects, using official ecosystem primitives where possible, deploying onchain, and documenting the actual transactions and results.
+I'm a creator and artist learning by shipping real onchain projects. I use AI as a building tool, work with official ecosystem primitives where possible, and document the actual contracts, transactions, failures, fixes, and results.
 
 ## Featured builds
 
