@@ -24,9 +24,10 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - [x] Deploy the revised `OrbinumNativePayout`
 - [ ] Record the revised deployment transaction hash
 - [x] Fund the revised contract with testnet ORB
-- [x] Send a direct transaction to Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
-- [x] Pay an `AccountId32` through the native Substrate balances pallet
-- [x] Verify the direct precompile transaction succeeded and record the native transfer as complete
+- [x] Confirm raw `eth_call` to the Balances precompile succeeds with selector `0x6a467394`
+- [x] Submit a direct transaction to Orbinum Balances precompile `0x0000000000000000000000000000000000000802`
+- [ ] Verify the direct precompile transaction succeeded onchain
+- [ ] Mark the native transfer complete
 
 ## First deployment — OrbPing
 - Contract: `OrbPing`
@@ -59,7 +60,7 @@ Track real Orbinum builder activity, moving from a basic EVM deploy into Orbinum
 - Payout implementation: `Balances.transfer(bytes32,uint256)`
 - Funding tx: `0xf2b7edf2c7c7795ef58aea56cf2d4e744163785c0fff800bf1ebde66cd73f880`
 - Funding value reported from Remix: `200000000 wei`
-- Status: deployed and funded; payout pending
+- Status: deployed and funded; wrapper payout not yet proven
 - Date: 2026-09-04
 
 The revised contract can hold ORB and, under owner control, call `transfer(bytes32,uint256)` on the precompile to move native ORB to an Orbinum `AccountId32`.
@@ -68,23 +69,24 @@ This is more meaningful than another generic Solidity contract because the preco
 
 The helper `evmToAccountId32(address)` also documents Orbinum's unified EVM/Substrate account mapping: an EVM address becomes a 32-byte account ID by appending twelve zero bytes.
 
+## Direct native precompile test
+
+A raw `eth_call` using `transfer(bytes32,uint256)` with selector `0x6a467394` returned `0x`, confirming that the precompile accepted the calldata shape.
+
+A real wallet transaction was then submitted directly to the native Balances precompile:
+
+- Target precompile: `0x0000000000000000000000000000000000000802`
+- Function selector: `0x6a467394` (`transfer(bytes32,uint256)`)
+- Recipient `AccountId32`: `0x06a1e61244e6a55fd52375b3fab913af9249952b000000000000000000000000`
+- Amount encoded: `1` base unit
+- Transaction hash: `0x1c553820bc0aeb07d7cc2977bdaadd62e22efa6a306db4356369324698391088`
+- Status: submitted; explorer verification pending
+
 ## Why this matters
 
-`OrbPing` proves basic EVM compatibility. `OrbinumNativePayout` is the actual ecosystem-specific upgrade: Solidity calling Orbinum runtime functionality through a native precompile and bridging the EVM and Substrate address spaces.
+`OrbPing` proves basic EVM compatibility. `OrbinumNativePayout` and the direct precompile test are the ecosystem-specific upgrade: Solidity/EVM tooling calling Orbinum runtime functionality through a native precompile and bridging the EVM and Substrate address spaces.
 
 A deeper privacy build can later use the ShieldedPool precompile at `0x0000000000000000000000000000000000000801`, but real shielded transfers require commitments, encrypted memos and ZK proofs generated with the Orbinum SDK, so they are intentionally not faked here.
 
 ## Notes
-Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after the revised contract has a real testnet funding transaction and successful precompile-backed payout.
-
-
-### Direct native precompile transaction
-- Target precompile: `0x0000000000000000000000000000000000000802`
-- Function selector: `0x6a467394` (`transfer(bytes32,uint256)`)
-- Transaction hash: `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8`
-- Status: **Success** on the Orbinum explorer. The transaction called the native Balances precompile directly with selector `0x6a467394`, proving a real EVM → Substrate balances-pallet interaction.
-
-
-## Final status
-
-The Orbinum-native integration is complete. The explorer confirms transaction `0x3af2cf61a65f21b60c04ea2f8f534e5681548fe7e79820641723a683d270e4a8` succeeded against the Balances precompile at `0x0000000000000000000000000000000000000802` using `transfer(bytes32,uint256)`. The earlier wrapper attempts remain documented as part of the debugging history rather than being rewritten as successful.
+Never commit private keys, seed phrases or wallet secrets. Only mark the native payout flow complete after a real testnet transaction to the Balances precompile is verified successful onchain.
