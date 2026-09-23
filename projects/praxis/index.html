@@ -206,6 +206,38 @@
       min-height: 100px;
     }
 
+    .verification-panel {
+      display: grid;
+      gap: 5px;
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-2);
+    }
+
+    .verification-panel span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      word-break: break-word;
+    }
+
+    .verification-panel.verified {
+      border-color: rgba(120, 224, 143, 0.45);
+    }
+
+    .verification-panel.verified strong {
+      color: var(--success);
+    }
+
+    .verification-panel.failed {
+      border-color: rgba(255, 118, 118, 0.45);
+    }
+
+    .verification-panel.failed strong {
+      color: var(--danger);
+    }
+
     .proof-note {
       margin: 10px 0 0;
       color: var(--muted);
@@ -310,6 +342,11 @@
             <textarea id="signatureOutput" class="signature-output" readonly></textarea>
           </div>
 
+          <div id="verificationPanel" class="verification-panel">
+            <strong id="verificationTitle">Not verified yet</strong>
+            <span id="verificationDetail">Sign a commitment to verify the recovered wallet.</span>
+          </div>
+
           <p class="proof-note">
             This is an offchain wallet signature. It does not send a transaction,
             spend gas, or prove official Praxis membership.
@@ -325,8 +362,7 @@
     </p>
   </main>
 
-  <script>
-    const connectButton = document.getElementById("connectButton");
+  <script type="module">\n    import { verifyMessage, getAddress } from "https://cdn.jsdelivr.net/npm/ethers@6.17.0/+esm";\n\n    const connectButton = document.getElementById("connectButton");
     const signButton = document.getElementById("signButton");
     const commitmentForm = document.getElementById("commitmentForm");
     const walletInput = document.getElementById("wallet");
@@ -335,6 +371,9 @@
     const proofPanel = document.getElementById("proofPanel");
     const messageOutput = document.getElementById("messageOutput");
     const signatureOutput = document.getElementById("signatureOutput");
+    const verificationPanel = document.getElementById("verificationPanel");
+    const verificationTitle = document.getElementById("verificationTitle");
+    const verificationDetail = document.getElementById("verificationDetail");
 
     let signedProof = null;
 
@@ -371,7 +410,25 @@
       signedProof = null;
       messageOutput.value = "";
       signatureOutput.value = "";
+      verificationPanel.className = "verification-panel";
+      verificationTitle.textContent = "Not verified yet";
+      verificationDetail.textContent = "Sign a commitment to verify the recovered wallet.";
       proofPanel.classList.remove("visible");
+    }
+
+    function verifySignedCommitment(message, signature, expectedWallet) {
+      const recoveredWallet = verifyMessage(message, signature);
+      const recovered = getAddress(recoveredWallet);
+      const expected = getAddress(expectedWallet);
+      const matches = recovered === expected;
+
+      verificationPanel.className = "verification-panel " + (matches ? "verified" : "failed");
+      verificationTitle.textContent = matches ? "Signature verified" : "Signature mismatch";
+      verificationDetail.textContent = matches
+        ? "Recovered wallet: " + recovered
+        : "Recovered " + recovered + " but expected " + expected;
+
+      return { recoveredWallet: recovered, verified: matches };
     }
 
     function applyWallet(address) {
@@ -437,6 +494,8 @@
           params: [messageHex, signer]
         });
 
+        const verification = verifySignedCommitment(message, signature, signer);
+
         signedProof = {
           project: "Praxis Creator Commitment",
           version: "1.0",
@@ -445,6 +504,8 @@
           cityNeed: document.getElementById("cityNeed").value.trim(),
           commitment: document.getElementById("commitment").value.trim(),
           wallet: signer,
+          recoveredWallet: verification.recoveredWallet,
+          verified: verification.verified,
           timestamp,
           message,
           signature
@@ -453,7 +514,12 @@
         messageOutput.value = message;
         signatureOutput.value = signature;
         proofPanel.classList.add("visible");
-        setStatus("Commitment signed successfully. No transaction or gas was used.", "success");
+
+        if (verification.verified) {
+          setStatus("Commitment signed and cryptographically verified. No transaction or gas was used.", "success");
+        } else {
+          setStatus("Signature was created, but the recovered wallet does not match.", "error");
+        }
       } catch (error) {
         clearSignedProof();
 
