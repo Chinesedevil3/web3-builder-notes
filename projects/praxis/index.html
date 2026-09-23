@@ -175,11 +175,42 @@
       color: var(--danger);
     }
 
-    .future-action {
+    .primary-action {
       width: 100%;
       margin-top: 22px;
-      background: #2b2b30;
-      color: #8d8d94;
+    }
+
+    .proof {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .proof.visible {
+      display: block;
+    }
+
+    .proof h2 {
+      margin: 0 0 16px;
+      font-size: 1.05rem;
+    }
+
+    .proof textarea {
+      min-height: 150px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+    }
+
+    .proof .signature-output {
+      min-height: 100px;
+    }
+
+    .proof-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
     }
 
     .disclaimer {
@@ -262,9 +293,28 @@
 
         <p id="status" class="status" role="status"></p>
 
-        <button class="future-action" type="button" disabled>
-          Sign Commitment — next step
+        <button id="signButton" class="primary-action" type="button" disabled>
+          Sign Commitment
         </button>
+
+        <section id="proofPanel" class="proof" aria-live="polite">
+          <h2>Signed proof</h2>
+
+          <div class="field full">
+            <label for="messageOutput">Signed message</label>
+            <textarea id="messageOutput" readonly></textarea>
+          </div>
+
+          <div class="field full" style="margin-top: 14px;">
+            <label for="signatureOutput">Signature</label>
+            <textarea id="signatureOutput" class="signature-output" readonly></textarea>
+          </div>
+
+          <p class="proof-note">
+            This is an offchain wallet signature. It does not send a transaction,
+            spend gas, or prove official Praxis membership.
+          </p>
+        </section>
       </form>
     </section>
 
@@ -277,9 +327,16 @@
 
   <script>
     const connectButton = document.getElementById("connectButton");
+    const signButton = document.getElementById("signButton");
+    const commitmentForm = document.getElementById("commitmentForm");
     const walletInput = document.getElementById("wallet");
     const walletLabel = document.getElementById("walletLabel");
     const status = document.getElementById("status");
+    const proofPanel = document.getElementById("proofPanel");
+    const messageOutput = document.getElementById("messageOutput");
+    const signatureOutput = document.getElementById("signatureOutput");
+
+    let signedProof = null;
 
     function shortAddress(address) {
       return address.slice(0, 6) + "…" + address.slice(-4);
@@ -290,11 +347,40 @@
       status.className = "status" + (type ? " " + type : "");
     }
 
+    function textToHex(text) {
+      const bytes = new TextEncoder().encode(text);
+      return "0x" + Array.from(bytes)
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    function buildCommitment(timestamp) {
+      return [
+        "Praxis Creator Commitment",
+        "Version: 1.0",
+        "Creator: " + document.getElementById("creator").value.trim(),
+        "Contribution: " + document.getElementById("contribution").value.trim(),
+        "City need: " + document.getElementById("cityNeed").value.trim(),
+        "Commitment: " + document.getElementById("commitment").value.trim(),
+        "Wallet: " + walletInput.value,
+        "Timestamp: " + timestamp
+      ].join("\n");
+    }
+
+    function clearSignedProof() {
+      signedProof = null;
+      messageOutput.value = "";
+      signatureOutput.value = "";
+      proofPanel.classList.remove("visible");
+    }
+
     function applyWallet(address) {
       walletInput.value = address;
       walletLabel.textContent = shortAddress(address);
       connectButton.textContent = "Connected";
-      setStatus("Browser wallet connected. No transaction has been sent.", "success");
+      signButton.disabled = false;
+      clearSignedProof();
+      setStatus("Browser wallet connected. Ready to sign offchain.", "success");
     }
 
     async function connectWallet() {
@@ -327,7 +413,69 @@
       }
     }
 
+    async function signCommitment() {
+      if (!window.ethereum || !walletInput.value) {
+        setStatus("Connect a browser wallet first.", "error");
+        return;
+      }
+
+      if (!commitmentForm.reportValidity()) {
+        return;
+      }
+
+      const timestamp = new Date().toISOString();
+      const message = buildCommitment(timestamp);
+      const messageHex = textToHex(message);
+      const signer = walletInput.value;
+
+      signButton.disabled = true;
+      setStatus("Check your wallet and approve the message signature…");
+
+      try {
+        const signature = await window.ethereum.request({
+          method: "personal_sign",
+          params: [messageHex, signer]
+        });
+
+        signedProof = {
+          project: "Praxis Creator Commitment",
+          version: "1.0",
+          creator: document.getElementById("creator").value.trim(),
+          contribution: document.getElementById("contribution").value.trim(),
+          cityNeed: document.getElementById("cityNeed").value.trim(),
+          commitment: document.getElementById("commitment").value.trim(),
+          wallet: signer,
+          timestamp,
+          message,
+          signature
+        };
+
+        messageOutput.value = message;
+        signatureOutput.value = signature;
+        proofPanel.classList.add("visible");
+        setStatus("Commitment signed successfully. No transaction or gas was used.", "success");
+      } catch (error) {
+        clearSignedProof();
+
+        if (error && error.code === 4001) {
+          setStatus("Signature request was cancelled.", "error");
+        } else {
+          setStatus("Could not sign the commitment with this wallet.", "error");
+        }
+      } finally {
+        signButton.disabled = !walletInput.value;
+      }
+    }
+
     connectButton.addEventListener("click", connectWallet);
+    signButton.addEventListener("click", signCommitment);
+
+    commitmentForm.addEventListener("input", (event) => {
+      if (event.target.id !== "wallet" && signedProof) {
+        clearSignedProof();
+        setStatus("Commitment changed. Sign again to create a fresh proof.");
+      }
+    });
 
     if (window.ethereum) {
       window.ethereum.request({ method: "eth_accounts" })
@@ -345,6 +493,8 @@
           walletInput.value = "";
           walletLabel.textContent = "Wallet not connected";
           connectButton.textContent = "Connect Wallet";
+          signButton.disabled = true;
+          clearSignedProof();
           setStatus("Wallet disconnected.");
         }
       });
