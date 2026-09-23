@@ -45,7 +45,7 @@ The first example will focus on creative/community contribution such as:
 
 - [x] Project scope defined
 - [ ] Commitment schema
-- [ ] Browser UI
+- [x] Browser UI
 - [ ] Wallet connect
 - [ ] Message signing
 - [ ] Signature verification
