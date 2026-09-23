@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Praxis Creator Commitment</title>
+  <meta
+    name="description"
+    content="An independent creator commitment prototype inspired by Praxis city-building materials."
+  />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b0c;
+      --panel: #141416;
+      --panel-2: #1b1b1e;
+      --text: #f5f5f5;
+      --muted: #a7a7ad;
+      --line: #2a2a2f;
+      --accent: #ffffff;
+      --danger: #ff7676;
+      --success: #78e08f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #1c1c20 0, #0b0b0c 42%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.4rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+
+    .intro {
+      max-width: 690px;
+      margin: 22px 0 34px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(20, 20, 22, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .wallet-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wallet-copy strong,
+    .wallet-copy span {
+      display: block;
+    }
+
+    .wallet-copy span {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #0b0b0c;
+      padding: 12px 18px;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      outline: none;
+      background: var(--panel-2);
+      color: var(--text);
+      padding: 13px 14px;
+      font: inherit;
+      line-height: 1.45;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #66666d;
+    }
+
+    .status {
+      margin: 18px 0 0;
+      min-height: 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .future-action {
+      width: 100%;
+      margin-top: 22px;
+      background: #2b2b30;
+      color: #8d8d94;
+    }
+
+    .disclaimer {
+      margin: 18px 2px 0;
+      color: #77777e;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 700px) {
+      .shell {
+        padding-top: 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .wallet-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .wallet-row button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <p class="eyebrow">Independent community prototype</p>
+    <h1>Praxis Creator Commitment</h1>
+
+    <p class="intro">
+      Describe what you would contribute to a future creative neighborhood,
+      connect your browser wallet, and create a verifiable creator commitment.
+    </p>
+
+    <section class="card" aria-labelledby="commitment-title">
+      <div class="wallet-row">
+        <div class="wallet-copy">
+          <strong id="commitment-title">Creator commitment</strong>
+          <span id="walletLabel">Wallet not connected</span>
+        </div>
+        <button id="connectButton" type="button">Connect Wallet</button>
+      </div>
+
+      <form id="commitmentForm">
+        <div class="grid">
+          <div class="field">
+            <label for="creator">Creator name</label>
+            <input id="creator" name="creator" value="Stavros" maxlength="80" required />
+          </div>
+
+          <div class="field">
+            <label for="wallet">Wallet</label>
+            <input id="wallet" name="wallet" placeholder="Connect wallet to fill" readonly />
+          </div>
+
+          <div class="field full">
+            <label for="contribution">What would you contribute?</label>
+            <textarea id="contribution" name="contribution" maxlength="300" required>Public art, dance, creator workshops and community events.</textarea>
+          </div>
+
+          <div class="field full">
+            <label for="cityNeed">What should the city make possible?</label>
+            <textarea id="cityNeed" name="cityNeed" maxlength="300" required>Accessible creative spaces where artists and residents can meet, create and collaborate.</textarea>
+          </div>
+
+          <div class="field full">
+            <label for="commitment">Your commitment</label>
+            <textarea id="commitment" name="commitment" maxlength="500" required>I would contribute my creative skills and community energy to help build an active cultural neighborhood.</textarea>
+          </div>
+        </div>
+
+        <p id="status" class="status" role="status"></p>
+
+        <button class="future-action" type="button" disabled>
+          Sign Commitment — next step
+        </button>
+      </form>
+    </section>
+
+    <p class="disclaimer">
+      This is an independent community prototype inspired by publicly available
+      Praxis materials. It is not an official Praxis product, application, or
+      blockchain integration. Never enter a seed phrase or private key.
+    </p>
+  </main>
+
+  <script>
+    const connectButton = document.getElementById("connectButton");
+    const walletInput = document.getElementById("wallet");
+    const walletLabel = document.getElementById("walletLabel");
+    const status = document.getElementById("status");
+
+    function shortAddress(address) {
+      return address.slice(0, 6) + "…" + address.slice(-4);
+    }
+
+    function setStatus(message, type = "") {
+      status.textContent = message;
+      status.className = "status" + (type ? " " + type : "");
+    }
+
+    function applyWallet(address) {
+      walletInput.value = address;
+      walletLabel.textContent = shortAddress(address);
+      connectButton.textContent = "Connected";
+      setStatus("Browser wallet connected. No transaction has been sent.", "success");
+    }
+
+    async function connectWallet() {
+      if (!window.ethereum) {
+        setStatus("No EVM browser wallet detected. Open this page in a browser with a wallet extension.", "error");
+        return;
+      }
+
+      connectButton.disabled = true;
+      setStatus("Requesting wallet connection…");
+
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts"
+        });
+
+        if (!accounts || !accounts[0]) {
+          throw new Error("No wallet account returned.");
+        }
+
+        applyWallet(accounts[0]);
+      } catch (error) {
+        if (error && error.code === 4001) {
+          setStatus("Wallet connection was cancelled.", "error");
+        } else {
+          setStatus("Could not connect wallet. Try again from your browser wallet.", "error");
+        }
+      } finally {
+        connectButton.disabled = false;
+      }
+    }
+
+    connectButton.addEventListener("click", connectWallet);
+
+    if (window.ethereum) {
+      window.ethereum.request({ method: "eth_accounts" })
+        .then((accounts) => {
+          if (accounts && accounts[0]) {
+            applyWallet(accounts[0]);
+          }
+        })
+        .catch(() => {});
+
+      window.ethereum.on?.("accountsChanged", (accounts) => {
+        if (accounts && accounts[0]) {
+          applyWallet(accounts[0]);
+        } else {
+          walletInput.value = "";
+          walletLabel.textContent = "Wallet not connected";
+          connectButton.textContent = "Connect Wallet";
+          setStatus("Wallet disconnected.");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
