@@ -46,8 +46,8 @@ The first example will focus on creative/community contribution such as:
 - [x] Project scope defined
 - [ ] Commitment schema
 - [x] Browser UI
-- [ ] Wallet connect
-- [ ] Message signing
+- [x] Wallet connect implemented
+- [x] Message signing implemented
 - [ ] Signature verification
 - [ ] JSON proof export
 - [ ] Demo screenshots
@@ -57,3 +57,7 @@ The first example will focus on creative/community contribution such as:
 ## Disclaimer
 
 This is an independent community prototype inspired by publicly available Praxis materials. It is not an official Praxis product, application, or blockchain integration.
+
+## Browser test status
+
+Wallet connection and offchain `personal_sign` are implemented in the browser app. A real wallet signature still needs to be produced and recorded before these steps count as verified proof.
