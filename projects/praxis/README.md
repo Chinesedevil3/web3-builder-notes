@@ -48,7 +48,7 @@ The first example will focus on creative/community contribution such as:
 - [x] Browser UI
 - [x] Wallet connect implemented
 - [x] Message signing implemented
-- [ ] Signature verification
+- [x] Signature verification implemented
 - [ ] JSON proof export
 - [ ] Demo screenshots
 - [ ] Final README cleanup
@@ -60,4 +60,4 @@ This is an independent community prototype inspired by publicly available Praxis
 
 ## Browser test status
 
-Wallet connection and offchain `personal_sign` are implemented in the browser app. A real wallet signature still needs to be produced and recorded before these steps count as verified proof.
+Wallet connection, offchain `personal_sign`, and local signature recovery/verification are implemented in the browser app. A real wallet signature still needs to be produced and recorded before the project counts as verified proof.
