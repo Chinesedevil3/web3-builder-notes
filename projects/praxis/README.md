@@ -94,3 +94,9 @@ The important part of the footprint is the honesty of the integration: no invent
 Final flow tested:
 
 `Live app → Connect Wallet → Sign Commitment → Recover signer → Signature verified → Download Proof JSON → Public GitHub proof`
+
+## Visual proof
+
+![Praxis Creator Commitment verified browser proof](proof/praxis-proof-verified-2026-09-24.webp)
+
+The screenshot shows the signed commitment message, raw signature, **Signature verified**, recovered wallet, and the enabled **Download Proof JSON** action on the live app.
