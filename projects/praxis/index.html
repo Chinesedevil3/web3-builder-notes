@@ -347,6 +347,10 @@
             <span id="verificationDetail">Sign a commitment to verify the recovered wallet.</span>
           </div>
 
+          <button id="downloadProofButton" class="primary-action" type="button" disabled>
+            Download Proof JSON
+          </button>
+
           <p class="proof-note">
             This is an offchain wallet signature. It does not send a transaction,
             spend gas, or prove official Praxis membership.
@@ -376,6 +380,7 @@
     const verificationPanel = document.getElementById("verificationPanel");
     const verificationTitle = document.getElementById("verificationTitle");
     const verificationDetail = document.getElementById("verificationDetail");
+    const downloadProofButton = document.getElementById("downloadProofButton");
 
     let signedProof = null;
 
@@ -415,6 +420,7 @@
       verificationPanel.className = "verification-panel";
       verificationTitle.textContent = "Not verified yet";
       verificationDetail.textContent = "Sign a commitment to verify the recovered wallet.";
+      downloadProofButton.disabled = true;
       proofPanel.classList.remove("visible");
     }
 
@@ -522,6 +528,7 @@
         proofPanel.classList.add("visible");
 
         if (verification.verified) {
+          downloadProofButton.disabled = false;
           setStatus("Commitment signed and cryptographically verified. No transaction or gas was used.", "success");
         } else {
           setStatus("Signature was created, but the recovered wallet does not match.", "error");
@@ -539,8 +546,34 @@
       }
     }
 
+    function downloadProof() {
+      if (!signedProof || !signedProof.verified) {
+        setStatus("Create a verified signature before downloading proof.", "error");
+        return;
+      }
+
+      const blob = new Blob(
+        [JSON.stringify(signedProof, null, 2)],
+        { type: "application/json" }
+      );
+
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      const date = signedProof.timestamp.slice(0, 10);
+
+      anchor.href = url;
+      anchor.download = "praxis-creator-commitment-" + date + ".json";
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+
+      setStatus("Verified proof JSON downloaded.", "success");
+    }
+
     connectButton.addEventListener("click", connectWallet);
     signButton.addEventListener("click", signCommitment);
+    downloadProofButton.addEventListener("click", downloadProof);
 
     commitmentForm.addEventListener("input", (event) => {
       if (event.target.id !== "wallet" && signedProof) {
