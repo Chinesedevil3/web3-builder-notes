@@ -44,15 +44,15 @@ The first example will focus on creative/community contribution such as:
 ## Status
 
 - [x] Project scope defined
-- [ ] Commitment schema
+- [x] Commitment schema
 - [x] Browser UI
 - [x] Wallet connect implemented
 - [x] Message signing implemented
 - [x] Signature verification implemented and verified with a real wallet
 - [x] JSON proof export implemented and verified
 - [x] Real browser verification proof recorded
-- [ ] Final README cleanup
-- [ ] Showcase update
+- [x] Final README cleanup
+- [x] Showcase update
 
 ## Disclaimer
 
@@ -60,7 +60,7 @@ This is an independent community prototype inspired by publicly available Praxis
 
 ## Browser test status
 
-Wallet connection, offchain `personal_sign`, and local signature recovery/verification are implemented in the browser app. A real wallet signature still needs to be produced and recorded before the project counts as verified proof.
+Complete. A real browser-wallet `personal_sign` flow was executed on the live GitHub Pages app. The signature was recovered locally, matched to the connected wallet, and exported as a verified JSON proof artifact.
 
 ## Live demo
 
@@ -80,3 +80,17 @@ The live app exported a verified proof JSON after a real browser-wallet signatur
 - timestamp: `2026-09-24T03:03:18.146Z`
 
 The artifact contains the exact signed message and signature, allowing the commitment proof to be independently inspected rather than relying only on a screenshot.
+
+## What this footprint proves
+
+This project is not presented as a Praxis onchain deployment. It demonstrates a real, public Praxis-oriented creator tool built around the ecosystem surface that is actually available: a live browser app, wallet-based creator commitment, cryptographic signature recovery, reproducible verification, and a public proof artifact.
+
+The important part of the footprint is the honesty of the integration: no invented Praxis RPC, contract, testnet, or transaction is claimed.
+
+## Completion
+
+**Status: Complete — 2026-09-24**
+
+Final flow tested:
+
+`Live app → Connect Wallet → Sign Commitment → Recover signer → Signature verified → Download Proof JSON → Public GitHub proof`
