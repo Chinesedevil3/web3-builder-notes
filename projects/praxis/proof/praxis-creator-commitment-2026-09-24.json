@@ -1,0 +1,14 @@
+{
+  "project": "Praxis Creator Commitment",
+  "version": "1.0",
+  "creator": "Stavros",
+  "contribution": "Public art, dance, creator workshops and community events.",
+  "cityNeed": "Accessible creative spaces where artists and residents can meet, create and collaborate.",
+  "commitment": "I would contribute my creative skills and community energy to help build an active cultural neighborhood.",
+  "wallet": "0x06a1e61244e6a55fd52375b3fab913af9249952b",
+  "recoveredWallet": "0x06a1E61244E6A55FD52375b3faB913Af9249952b",
+  "verified": true,
+  "timestamp": "2026-09-24T03:03:18.146Z",
+  "message": "Praxis Creator Commitment\nVersion: 1.0\nCreator: Stavros\nContribution: Public art, dance, creator workshops and community events.\nCity need: Accessible creative spaces where artists and residents can meet, create and collaborate.\nCommitment: I would contribute my creative skills and community energy to help build an active cultural neighborhood.\nWallet: 0x06a1e61244e6a55fd52375b3fab913af9249952b\nTimestamp: 2026-09-24T03:03:18.146Z",
+  "signature": "0x8c557a2350ff4529ceea92d318e8c2e85896fe8b7eacc9d171e1f6085686168b39b7052d2c727f4afc3ff254142e97a77a626e6893d9fcbdeb242f55ebfda7f31b"
+}
