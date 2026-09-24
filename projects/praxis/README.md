@@ -49,7 +49,7 @@ The first example will focus on creative/community contribution such as:
 - [x] Wallet connect implemented
 - [x] Message signing implemented
 - [x] Signature verification implemented and verified with a real wallet
-- [ ] JSON proof export
+- [x] JSON proof export implemented
 - [x] Real browser verification proof recorded
 - [ ] Final README cleanup
 - [ ] Showcase update
