@@ -362,7 +362,9 @@
     </p>
   </main>
 
-  <script type="module">\n    import { verifyMessage, getAddress } from "https://cdn.jsdelivr.net/npm/ethers@6.17.0/+esm";\n\n    const connectButton = document.getElementById("connectButton");
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.17.0/dist/ethers.umd.min.js"></script>
+  <script>
+    const connectButton = document.getElementById("connectButton");
     const signButton = document.getElementById("signButton");
     const commitmentForm = document.getElementById("commitmentForm");
     const walletInput = document.getElementById("wallet");
@@ -417,9 +419,13 @@
     }
 
     function verifySignedCommitment(message, signature, expectedWallet) {
-      const recoveredWallet = verifyMessage(message, signature);
-      const recovered = getAddress(recoveredWallet);
-      const expected = getAddress(expectedWallet);
+      if (!window.ethers) {
+        throw new Error("Verification library did not load.");
+      }
+
+      const recoveredWallet = window.ethers.verifyMessage(message, signature);
+      const recovered = window.ethers.getAddress(recoveredWallet);
+      const expected = window.ethers.getAddress(expectedWallet);
       const matches = recovered === expected;
 
       verificationPanel.className = "verification-panel " + (matches ? "verified" : "failed");
