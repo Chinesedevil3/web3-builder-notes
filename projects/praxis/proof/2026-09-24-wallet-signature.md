@@ -23,3 +23,7 @@ with recovered wallet:
 ## Scope
 
 This proves control of the signing wallet for this commitment message. It does not claim an onchain Praxis transaction, official Praxis membership, or official Praxis affiliation.
+
+## Final browser result
+
+The completed live flow displayed the signed commitment message, raw wallet signature, **Signature verified**, the recovered wallet, and an enabled **Download Proof JSON** action. The exported JSON was then recorded in this repository as `praxis-creator-commitment-2026-09-24.json`.
