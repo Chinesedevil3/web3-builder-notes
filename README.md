@@ -15,6 +15,7 @@ I'm a creator and artist learning by shipping real onchain projects. I use AI as
 | [GIWA](projects/giwa-sepolia/) | GIWA Sepolia | `GiwaVerifiedCreator` integrated with GIWA Dojang verification and published a verified creator proof | Strong / complete |
 | [Push Chain](projects/push-chain/) | Push Donut Testnet | EVM contract + state interaction + Push-native Universal Transaction originating from Ethereum Sepolia | Strong / complete |
 | [X1 EcoChain](projects/x1-echochain/) | X1 Testnet | Builder registry with an onchain profile, published build proof, and verified readbacks | Good / complete |
+| [Praxis](projects/praxis/) | Praxis city-building companion | Live creator commitment app with browser-wallet signing, local signature recovery, and exported verification proof | Good / complete |
 
 ## What is inside
 
@@ -53,6 +54,7 @@ projects/
   push-chain/
   x1-echochain/
   orbinum/
+  praxis/
   abstract/
   seismic/
   rise-chain/
