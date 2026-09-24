@@ -100,3 +100,13 @@ Final flow tested:
 ![Praxis Creator Commitment verified browser proof](proof/praxis-proof-verified-2026-09-24.webp)
 
 The screenshot shows the signed commitment message, raw signature, **Signature verified**, recovered wallet, and the enabled **Download Proof JSON** action on the live app.
+
+## Official Praxis references
+
+This prototype is grounded in current public Praxis materials:
+
+- Praxis City — Campaign I · Commitment to Move: https://www.praxisnation.com/city
+- Praxis Uruguay — residences, fellows, artists, founders, studios and cultural spaces: https://www.praxisnation.com/uruguay
+- Praxis home — Digital Nation, city campaign, membership and AI/community framing: https://www.praxisnation.com/
+
+These references are why this project focuses on a creator/city commitment flow rather than claiming a public Praxis smart-contract or testnet integration that is not documented in the current public materials.
