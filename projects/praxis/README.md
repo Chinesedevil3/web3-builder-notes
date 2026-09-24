@@ -49,7 +49,7 @@ The first example will focus on creative/community contribution such as:
 - [x] Wallet connect implemented
 - [x] Message signing implemented
 - [x] Signature verification implemented and verified with a real wallet
-- [x] JSON proof export implemented
+- [x] JSON proof export implemented and verified
 - [x] Real browser verification proof recorded
 - [ ] Final README cleanup
 - [ ] Showcase update
@@ -69,3 +69,14 @@ https://chinesedevil3.github.io/web3-builder-notes/projects/praxis/
 ## Verified browser proof
 
 On 2026-09-24, the live app successfully completed a real browser-wallet `personal_sign` flow and locally recovered the signing wallet as `0x06a1E61244E6A55FD52375b3faB913Af9249952b`. The recovered address matched the connected signer and the UI returned **Signature verified**. See `proof/2026-09-24-wallet-signature.md`.
+
+## Exported proof artifact
+
+The live app exported a verified proof JSON after a real browser-wallet signature:
+
+- `proof/praxis-creator-commitment-2026-09-24.json`
+- `verified: true`
+- signer/recovered wallet: `0x06a1E61244E6A55FD52375b3faB913Af9249952b`
+- timestamp: `2026-09-24T03:03:18.146Z`
+
+The artifact contains the exact signed message and signature, allowing the commitment proof to be independently inspected rather than relying only on a screenshot.
