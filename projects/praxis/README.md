@@ -48,9 +48,9 @@ The first example will focus on creative/community contribution such as:
 - [x] Browser UI
 - [x] Wallet connect implemented
 - [x] Message signing implemented
-- [x] Signature verification implemented
+- [x] Signature verification implemented and verified with a real wallet
 - [ ] JSON proof export
-- [ ] Demo screenshots
+- [x] Real browser verification proof recorded
 - [ ] Final README cleanup
 - [ ] Showcase update
 
@@ -61,3 +61,11 @@ This is an independent community prototype inspired by publicly available Praxis
 ## Browser test status
 
 Wallet connection, offchain `personal_sign`, and local signature recovery/verification are implemented in the browser app. A real wallet signature still needs to be produced and recorded before the project counts as verified proof.
+
+## Live demo
+
+https://chinesedevil3.github.io/web3-builder-notes/projects/praxis/
+
+## Verified browser proof
+
+On 2026-09-24, the live app successfully completed a real browser-wallet `personal_sign` flow and locally recovered the signing wallet as `0x06a1E61244E6A55FD52375b3faB913Af9249952b`. The recovered address matched the connected signer and the UI returned **Signature verified**. See `proof/2026-09-24-wallet-signature.md`.
