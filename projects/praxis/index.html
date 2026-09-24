@@ -446,13 +446,29 @@
     function applyWallet(address) {
       walletInput.value = address;
       walletLabel.textContent = shortAddress(address);
-      connectButton.textContent = "Connected";
+      connectButton.textContent = "Disconnect";
+      connectButton.dataset.connected = "true";
       signButton.disabled = false;
       clearSignedProof();
       setStatus("Browser wallet connected. Ready to sign offchain.", "success");
     }
 
+    function disconnectLocalWallet() {
+      walletInput.value = "";
+      walletLabel.textContent = "Wallet not connected";
+      connectButton.textContent = "Connect Wallet";
+      connectButton.dataset.connected = "false";
+      signButton.disabled = true;
+      clearSignedProof();
+      setStatus("Disconnected from this page. Your wallet extension may still remember site permission.");
+    }
+
     async function connectWallet() {
+      if (connectButton.dataset.connected === "true") {
+        disconnectLocalWallet();
+        return;
+      }
+
       if (!window.ethereum) {
         setStatus("No EVM browser wallet detected. Open this page in a browser with a wallet extension.", "error");
         return;
@@ -597,10 +613,7 @@
         } else {
           walletInput.value = "";
           walletLabel.textContent = "Wallet not connected";
-          connectButton.textContent = "Connect Wallet";
-          signButton.disabled = true;
-          clearSignedProof();
-          setStatus("Wallet disconnected.");
+          disconnectLocalWallet();
         }
       });
     }
