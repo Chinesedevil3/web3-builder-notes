@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProofCourt — GenLayer Evidence Adjudication</title>
+  <meta name="description" content="A browser-native GenLayer app for multi-source claim verification and milestone adjudication." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">GENLAYER • STUDIONET</div>
+        <h1>ProofCourt</h1>
+        <p class="lede">Turn public web evidence into consensus-backed decisions.</p>
+      </div>
+      <button id="connectWallet" class="primary">Connect wallet</button>
+    </header>
+
+    <section class="statusbar">
+      <span id="walletStatus">Wallet not connected</span>
+      <span id="networkStatus">Studionet</span>
+    </section>
+
+    <section class="mode-switch" aria-label="Choose adjudication mode">
+      <button class="mode active" data-mode="claim">Verify a Claim</button>
+      <button class="mode" data-mode="milestone">Judge a Milestone</button>
+    </section>
+
+    <section id="claimPanel" class="panel">
+      <div class="panel-head">
+        <div>
+          <span class="kicker">EvidenceVerdict</span>
+          <h2>Multi-source claim verification</h2>
+        </div>
+        <a id="evidenceExplorer" class="ghost-link" target="_blank" rel="noreferrer">Explorer ↗</a>
+      </div>
+
+      <label>Claim
+        <textarea id="claim" rows="3" placeholder="Enter a factual claim to verify"></textarea>
+      </label>
+
+      <div class="grid-2">
+        <label>Source A URL
+          <input id="claimSourceA" type="url" placeholder="https://..." />
+        </label>
+        <label>Source B URL
+          <input id="claimSourceB" type="url" placeholder="https://..." />
+        </label>
+      </div>
+
+      <button id="verifyClaim" class="primary wide">Submit for consensus</button>
+      <div id="claimTx" class="tx"></div>
+
+      <div class="result-grid">
+        <div class="result-card"><span>Verdict</span><strong id="claimVerdict">—</strong></div>
+        <div class="result-card"><span>Reason</span><p id="claimReason">No result yet.</p></div>
+      </div>
+    </section>
+
+    <section id="milestonePanel" class="panel hidden">
+      <div class="panel-head">
+        <div>
+          <span class="kicker">MilestoneJudge</span>
+          <h2>Acceptance-criteria adjudication</h2>
+        </div>
+        <a id="milestoneExplorer" class="ghost-link disabled" target="_blank" rel="noreferrer">Explorer ↗</a>
+      </div>
+
+      <label>Milestone
+        <textarea id="milestone" rows="3" placeholder="Describe the milestone"></textarea>
+      </label>
+
+      <label>Acceptance criteria
+        <textarea id="criteria" rows="3" placeholder="What must the evidence prove?"></textarea>
+      </label>
+
+      <div class="grid-2">
+        <label>Source A URL
+          <input id="milestoneSourceA" type="url" placeholder="https://..." />
+        </label>
+        <label>Source B URL
+          <input id="milestoneSourceB" type="url" placeholder="https://..." />
+        </label>
+      </div>
+
+      <details class="config">
+        <summary>Contract configuration</summary>
+        <label>MilestoneJudge contract address
+          <input id="milestoneAddress" type="text" placeholder="0x..." autocomplete="off" />
+        </label>
+        <p>Saved only in this browser. Once the final address is pinned in the repo, this field disappears.</p>
+      </details>
+
+      <button id="judgeMilestone" class="primary wide">Submit for consensus</button>
+      <div id="milestoneTx" class="tx"></div>
+
+      <div class="result-grid three">
+        <div class="result-card"><span>Status</span><strong id="milestoneStatus">—</strong></div>
+        <div class="result-card"><span>Confidence</span><strong id="milestoneScore">—</strong></div>
+        <div class="result-card"><span>Reason</span><p id="milestoneReason">No result yet.</p></div>
+      </div>
+    </section>
+
+    <section class="about panel subtle">
+      <h2>Why ProofCourt?</h2>
+      <p>ProofCourt combines two GenLayer-native primitives: evidence verification and milestone adjudication. Both fetch public web evidence, use LLM reasoning, and rely on independent validators to reach consensus on a stable semantic decision.</p>
+      <div class="chips">
+        <span>Web access</span><span>LLM reasoning</span><span>Validator consensus</span><span>Persistent state</span>
+      </div>
+    </section>
+
+    <footer>
+      <span>Built on GenLayer</span>
+      <a href="https://github.com/Chinesedevil3/web3-builder-notes" target="_blank" rel="noreferrer">Source ↗</a>
+    </footer>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
