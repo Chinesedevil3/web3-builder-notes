@@ -16,6 +16,7 @@ I'm a creator and artist learning by shipping real onchain projects. I use AI as
 | [Push Chain](projects/push-chain/) | Push Donut Testnet | EVM contract + state interaction + Push-native Universal Transaction originating from Ethereum Sepolia | Strong / complete |
 | [X1 EcoChain](projects/x1-echochain/) | X1 Testnet | Builder registry with an onchain profile, published build proof, and verified readbacks | Good / complete |
 | [Praxis](projects/praxis/) | Praxis city-building companion | Live creator commitment app with browser-wallet signing, local signature recovery, and exported verification proof | Good / complete |
+| [Elysium Radar](projects/elysium-radar/) | Elysium Testnet | Read-only dashboard for live blocks, transactions, gas usage and contract-creation activity | Prototype / validation in progress |
 
 ## What is inside
 
@@ -55,6 +56,7 @@ projects/
   x1-echochain/
   orbinum/
   praxis/
+  elysium-radar/
   abstract/
   seismic/
   rise-chain/

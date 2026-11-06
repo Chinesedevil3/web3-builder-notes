@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="A lightweight live activity dashboard for Elysium Testnet.">
+  <title>Elysium Radar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="./"><span class="brand-mark">E</span><span>ELYSIUM <b>RADAR</b></span></a>
+      <div class="network"><span class="pulse"></span><span id="connection">CONNECTING</span><span class="chain">TESTNET · 99801</span></div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">ONCHAIN ACTIVITY MONITOR</p>
+      <h1>See the network<br><em>as it moves.</em></h1>
+      <p class="sub">A live, read-only view of activity on Kinetiq's Elysium Testnet.</p>
+    </section>
+
+    <section class="metrics" aria-label="Network metrics">
+      <article class="metric"><span class="metric-label">LATEST BLOCK</span><strong id="block-height">—</strong><small id="block-age">Waiting for RPC</small></article>
+      <article class="metric"><span class="metric-label">TXS IN LATEST BLOCK</span><strong id="tx-count">—</strong><small>Most recent block</small></article>
+      <article class="metric"><span class="metric-label">GAS USED</span><strong id="gas-used">—</strong><small>Most recent block</small></article>
+      <article class="metric"><span class="metric-label">CONTRACT CREATIONS</span><strong id="deploy-count">—</strong><small>Last 6 sampled blocks</small></article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">NETWORK PULSE</p><h2>Recent blocks</h2></div><span class="live-tag">LIVE</span></div>
+        <div class="block-list" id="blocks"><div class="empty">Waiting for the first block response…</div></div>
+      </article>
+      <article class="panel transactions-panel">
+        <div class="panel-head"><div><p class="eyebrow">ONCHAIN FLOW</p><h2>Recent transactions</h2></div><span class="muted" id="updated">NOT UPDATED</span></div>
+        <div class="tx-list" id="transactions"><div class="empty">Transactions will appear here.</div></div>
+      </article>
+    </section>
+
+    <footer><span>ELYSIUM RADAR · COMMUNITY BUILT</span><span>READ-ONLY · NO WALLET CONNECTION</span><a href="https://elysium.kinetiq.xyz/testnet-explorer" target="_blank" rel="noreferrer">OPEN EXPLORER ↗</a></footer>
+    <p class="notice" id="notice">Connecting to Elysium Testnet RPC…</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
