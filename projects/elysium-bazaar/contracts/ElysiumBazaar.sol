@@ -26,6 +26,7 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
     error NotTokenOwner();
     error NotSeller();
     error ListingNotFound();
+    error ListingAlreadyExists();
     error IncorrectPayment();
     error TransferFailed();
 
@@ -43,7 +44,7 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
         if (IERC721(nft).ownerOf(tokenId) != msg.sender) revert NotTokenOwner();
 
         bytes32 id = listingId(nft, tokenId);
-        if (listings[id].seller != address(0)) revert ListingNotFound();
+        if (listings[id].seller != address(0)) revert ListingAlreadyExists();
 
         IERC721(nft).safeTransferFrom(msg.sender, address(this), tokenId);
         listings[id] = Listing({
