@@ -1,0 +1,34 @@
+name: Elysium Bazaar CI
+
+on:
+  push:
+    branches:
+      - build/elysium-bazaar
+    paths:
+      - "projects/elysium-bazaar/**"
+      - ".github/workflows/elysium-bazaar.yml"
+  pull_request:
+    paths:
+      - "projects/elysium-bazaar/**"
+      - ".github/workflows/elysium-bazaar.yml"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/elysium-bazaar
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Compile contracts
+        run: npx hardhat compile
+      - name: Run contract tests
+        run: npx hardhat test
