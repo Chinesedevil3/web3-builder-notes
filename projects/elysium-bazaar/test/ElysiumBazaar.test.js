@@ -27,6 +27,14 @@ describe("ElysiumBazaar", function () {
     expect(item.price).to.equal(ethers.parseEther("2"));
   });
 
+  it("rejects unsolicited NFT transfers so they cannot be trapped in escrow", async function () {
+    const { seller, nft, bazaar } = await deployFixture();
+    await expect(
+      nft.connect(seller).safeTransferFrom(seller.address, await bazaar.getAddress(), 1)
+    ).to.be.revertedWithCustomError(bazaar, "UnexpectedNFTTransfer");
+    expect(await nft.ownerOf(1)).to.equal(seller.address);
+  });
+
   it("sends the NFT to the buyer and native payment to the seller", async function () {
     const { seller, buyer, nft, bazaar } = await deployFixture();
     const price = ethers.parseEther("2");
