@@ -1,0 +1,19 @@
+{
+  "name": "elysium-bazaar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal ERC-721 fixed-price marketplace for Elysium Testnet",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:elysium": "hardhat run scripts/deploy.js --network elysium"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.17"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.2"
+  }
+}
