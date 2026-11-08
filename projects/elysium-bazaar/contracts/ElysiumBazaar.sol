@@ -17,6 +17,12 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
 
     mapping(bytes32 => Listing) private listings;
 
+    // Only accept the exact safeTransferFrom initiated by createListing.
+    address private expectedNFT;
+    address private expectedSeller;
+    uint256 private expectedTokenId;
+    bool private expectingNFT;
+
     event Listed(bytes32 indexed listingId, address indexed seller, address indexed nft, uint256 tokenId, uint256 price);
     event Purchased(bytes32 indexed listingId, address indexed buyer, address indexed seller, address nft, uint256 tokenId, uint256 price);
     event Cancelled(bytes32 indexed listingId, address indexed seller, address indexed nft, uint256 tokenId);
@@ -29,6 +35,8 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
     error ListingAlreadyExists();
     error IncorrectPayment();
     error TransferFailed();
+    error UnexpectedNFTTransfer();
+    error NFTNotEscrowed();
 
     function listingId(address nft, uint256 tokenId) public pure returns (bytes32) {
         return keccak256(abi.encode(nft, tokenId));
@@ -46,7 +54,19 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
         bytes32 id = listingId(nft, tokenId);
         if (listings[id].seller != address(0)) revert ListingAlreadyExists();
 
+        expectedNFT = nft;
+        expectedSeller = msg.sender;
+        expectedTokenId = tokenId;
+        expectingNFT = true;
         IERC721(nft).safeTransferFrom(msg.sender, address(this), tokenId);
+        expectingNFT = false;
+        expectedNFT = address(0);
+        expectedSeller = address(0);
+        expectedTokenId = 0;
+
+        // Do not create a listing unless the NFT is actually held in escrow.
+        if (IERC721(nft).ownerOf(tokenId) != address(this)) revert NFTNotEscrowed();
+
         listings[id] = Listing({
             seller: msg.sender,
             nft: nft,
@@ -82,10 +102,22 @@ contract ElysiumBazaar is IERC721Receiver, ReentrancyGuard {
         delete listings[id];
         IERC721(item.nft).safeTransferFrom(address(this), item.seller, item.tokenId);
 
-        emit Cancelled(id, item.seller, item.nft, item.tokenId);
+        emit Cancelled(id, item.seller, nft, tokenId);
     }
 
-    function onERC721Received(address, address, uint256, bytes calldata) external pure override returns (bytes4) {
+    function onERC721Received(
+        address,
+        address from,
+        uint256 tokenId,
+        bytes calldata
+    ) external view override returns (bytes4) {
+        if (
+            !expectingNFT ||
+            msg.sender != expectedNFT ||
+            from != expectedSeller ||
+            tokenId != expectedTokenId
+        ) revert UnexpectedNFTTransfer();
+
         return IERC721Receiver.onERC721Received.selector;
     }
 }
